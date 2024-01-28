@@ -1,0 +1,47 @@
+Loading rhel8/default-amp
+  Loading requirement: dot rhel8/slurm singularity/current rhel8/global
+    cuda/11.4 libpciaccess/0.16/gcc-9.4.0-6fonbj6
+    libiconv/1.16/gcc-9.4.0-ahebbov libxml2/2.9.12/gcc-9.4.0-gnknt5e
+    ncurses/6.2/gcc-9.4.0-aiirok7 hwloc/2.5.0/gcc-9.4.0-7sqomga
+    libevent/2.1.12/gcc-9.4.0-hgny7cm numactl/2.0.14/gcc-9.4.0-52dwc6n
+    cuda/11.4.0/gcc-9.4.0-3hnxhjt gdrcopy/2.2/gcc-9.4.0-e4igtfp
+    knem/1.1.4/gcc-9.4.0-bpbxgva libnl/3.3.0/gcc-9.4.0-whwhrwb
+    rdma-core/34.0/gcc-9.4.0-5eo5n2u ucx/1.11.1/gcc-9.4.0-lktqyl4
+    openmpi/4.1.1/gcc-9.4.0-epagguv
+Changed directory to /rds/user/ejg84/hpc-work/MLMI14/exp_timit.
+
+JobID: 43101791
+======
+Time: Sat Jan 27 23:46:10 GMT 2024
+Running on master node: gpu-q-64
+Current directory: /rds/user/ejg84/hpc-work/MLMI14/exp_timit
+
+Nodes allocated:
+================
+gpu-q-64
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u run.py                 --train_json data/train.json                 --val_json data/dev.json                 --test_json data/test.json                 --batch_size 4                 --lr 0.001                 --vocab data/vocab.txt                 --model wav2vec2                 --num_epochs 20  > logs/out.43101791
+
+/rds/project/rds-xyBFuSj0hm0/MLMI2.M2022/miniconda3/lib/python3.9/site-packages/transformers/configuration_utils.py:369: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+Some weights of the model checkpoint at facebook/wav2vec2-base were not used when initializing Wav2Vec2Model: ['project_hid.bias', 'quantizer.codevectors', 'quantizer.weight_proj.bias', 'project_q.weight', 'project_hid.weight', 'project_q.bias', 'quantizer.weight_proj.weight']
+- This IS expected if you are initializing Wav2Vec2Model from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing Wav2Vec2Model from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+/rds/project/rds-xyBFuSj0hm0/MLMI2.M2022/miniconda3/lib/python3.9/site-packages/torch/utils/checkpoint.py:25: UserWarning: None of the inputs have requires_grad=True. Gradients will be None
+  warnings.warn("None of the inputs have requires_grad=True. Gradients will be None")
+Traceback (most recent call last):
+  File "/rds/user/ejg84/hpc-work/MLMI14/exp_timit/run.py", line 57, in <module>
+    model_path = train(model, args)
+  File "/rds/user/ejg84/hpc-work/MLMI14/exp_timit/trainer.py", line 100, in train
+    avg_train_loss = train_one_epoch(epoch)
+  File "/rds/user/ejg84/hpc-work/MLMI14/exp_timit/trainer.py", line 72, in train_one_epoch
+    loss.backward()
+  File "/rds/project/rds-xyBFuSj0hm0/MLMI2.M2022/miniconda3/lib/python3.9/site-packages/torch/_tensor.py", line 396, in backward
+    torch.autograd.backward(self, gradient, retain_graph, create_graph, inputs=inputs)
+  File "/rds/project/rds-xyBFuSj0hm0/MLMI2.M2022/miniconda3/lib/python3.9/site-packages/torch/autograd/__init__.py", line 173, in backward
+    Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn

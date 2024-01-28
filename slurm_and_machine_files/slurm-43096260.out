@@ -1,0 +1,35 @@
+Loading rhel8/default-amp
+  Loading requirement: dot rhel8/slurm singularity/current rhel8/global
+    cuda/11.4 libpciaccess/0.16/gcc-9.4.0-6fonbj6
+    libiconv/1.16/gcc-9.4.0-ahebbov libxml2/2.9.12/gcc-9.4.0-gnknt5e
+    ncurses/6.2/gcc-9.4.0-aiirok7 hwloc/2.5.0/gcc-9.4.0-7sqomga
+    libevent/2.1.12/gcc-9.4.0-hgny7cm numactl/2.0.14/gcc-9.4.0-52dwc6n
+    cuda/11.4.0/gcc-9.4.0-3hnxhjt gdrcopy/2.2/gcc-9.4.0-e4igtfp
+    knem/1.1.4/gcc-9.4.0-bpbxgva libnl/3.3.0/gcc-9.4.0-whwhrwb
+    rdma-core/34.0/gcc-9.4.0-5eo5n2u ucx/1.11.1/gcc-9.4.0-lktqyl4
+    openmpi/4.1.1/gcc-9.4.0-epagguv
+Changed directory to /rds/user/ejg84/hpc-work/MLMI14/exp_timit.
+
+JobID: 43096260
+======
+Time: Sat Jan 27 22:03:27 GMT 2024
+Running on master node: gpu-q-66
+Current directory: /rds/user/ejg84/hpc-work/MLMI14/exp_timit
+
+Nodes allocated:
+================
+gpu-q-66
+
+numtasks=1, numnodes=1, mpi_tasks_per_node=1 (OMP_NUM_THREADS=1)
+
+Executing command:
+==================
+python -u run.py                 --train_json data/train.json                 --val_json data/dev.json                 --test_json data/test.json                 --batch_size 4                 --lr 0.001                 --vocab data/vocab.txt                 --model wav2vec2                 --num_epochs 20  > logs/out.43096260
+
+Downloading:   0%|          | 0.00/1.84k [00:00<?, ?B/s]Downloading: 100%|██████████| 1.84k/1.84k [00:00<00:00, 2.85MB/s]
+/rds/project/rds-xyBFuSj0hm0/MLMI2.M2022/miniconda3/lib/python3.9/site-packages/transformers/configuration_utils.py:369: UserWarning: Passing `gradient_checkpointing` to a config initialization is deprecated and will be removed in v5 Transformers. Using `model.gradient_checkpointing_enable()` instead, or if you are using the `Trainer` API, pass `gradient_checkpointing=True` in your `TrainingArguments`.
+  warnings.warn(
+Downloading:   0%|          | 0.00/380M [00:00<?, ?B/s]Downloading:   2%|▏         | 6.03M/380M [00:00<00:06, 60.3MB/s]Downloading:   3%|▎         | 12.8M/380M [00:00<00:05, 64.5MB/s]Downloading:   6%|▌         | 22.7M/380M [00:00<00:04, 80.2MB/s]Downloading:   9%|▉         | 35.3M/380M [00:00<00:03, 98.5MB/s]Downloading:  12%|█▏        | 47.1M/380M [00:00<00:03, 105MB/s] Downloading:  15%|█▌        | 58.8M/380M [00:00<00:02, 109MB/s]Downloading:  19%|█▊        | 70.6M/380M [00:00<00:02, 112MB/s]Downloading:  22%|██▏       | 82.3M/380M [00:00<00:02, 114MB/s]Downloading:  25%|██▍       | 94.1M/380M [00:00<00:02, 115MB/s]Downloading:  28%|██▊       | 106M/380M [00:01<00:02, 116MB/s] Downloading:  31%|███       | 118M/380M [00:01<00:02, 116MB/s]Downloading:  34%|███▍      | 129M/380M [00:01<00:02, 117MB/s]Downloading:  37%|███▋      | 141M/380M [00:01<00:02, 117MB/s]Downloading:  40%|████      | 153M/380M [00:01<00:01, 117MB/s]Downloading:  43%|████▎     | 165M/380M [00:01<00:01, 117MB/s]Downloading:  46%|████▋     | 176M/380M [00:01<00:01, 117MB/s]Downloading:  49%|████▉     | 188M/380M [00:01<00:01, 117MB/s]Downloading:  53%|█████▎    | 200M/380M [00:01<00:01, 117MB/s]Downloading:  56%|█████▌    | 211M/380M [00:01<00:01, 117MB/s]Downloading:  59%|█████▊    | 223M/380M [00:02<00:01, 117MB/s]Downloading:  62%|██████▏   | 235M/380M [00:02<00:01, 117MB/s]Downloading:  65%|██████▍   | 247M/380M [00:02<00:01, 86.0MB/s]Downloading:  68%|██████▊   | 257M/380M [00:02<00:01, 90.1MB/s]Downloading:  71%|███████   | 268M/380M [00:02<00:01, 96.2MB/s]Downloading:  74%|███████▎  | 280M/380M [00:02<00:00, 102MB/s] Downloading:  77%|███████▋  | 292M/380M [00:02<00:00, 106MB/s]Downloading:  80%|███████▉  | 304M/380M [00:02<00:00, 109MB/s]Downloading:  83%|████████▎ | 315M/380M [00:02<00:00, 112MB/s]Downloading:  86%|████████▌ | 327M/380M [00:03<00:00, 113MB/s]Downloading:  89%|████████▉ | 339M/380M [00:03<00:00, 115MB/s]Downloading:  92%|█████████▏| 351M/380M [00:03<00:00, 115MB/s]Downloading:  95%|█████████▌| 362M/380M [00:03<00:00, 116MB/s]Downloading:  98%|█████████▊| 374M/380M [00:03<00:00, 116MB/s]Downloading: 100%|██████████| 380M/380M [00:03<00:00, 109MB/s]
+Some weights of the model checkpoint at facebook/wav2vec2-base were not used when initializing Wav2Vec2Model: ['project_q.bias', 'project_hid.bias', 'quantizer.weight_proj.bias', 'quantizer.weight_proj.weight', 'quantizer.codevectors', 'project_hid.weight', 'project_q.weight']
+- This IS expected if you are initializing Wav2Vec2Model from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing Wav2Vec2Model from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
