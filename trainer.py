@@ -22,7 +22,7 @@ def train(model, args):
         val_loader = get_dataloader_wav(args.val_json, args.batch_size, False)
 
     criterion = CTCLoss(zero_infinity=True)
-    optimiser = Adam(model.parameters(), lr=args.lr)
+    optimiser = SGD(model.parameters(), lr=args.lr)
 
     def train_one_epoch(epoch):
         running_loss = 0.0

@@ -1,3 +1,4 @@
 checkpoints/
 data/
 slurm_and_machine_files/
+logs/out.*
