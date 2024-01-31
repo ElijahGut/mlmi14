@@ -6,11 +6,13 @@ from torch.nn import CTCLoss
 from torch.nn.utils.rnn import pad_sequence
 from torch.nn.functional import log_softmax
 from torch.optim import SGD, Adam
+from torch.optim.lr_scheduler import ChainedScheduler, LinearLR, ConstantLR
 from decoder import decode
 from utils import concat_inputs
 
 from dataloader import get_dataloader, get_dataloader_wav
 
+UNFREEZE_EPOCH = 3
 
 def train(model, args):
     torch.manual_seed(args.seed)
@@ -22,7 +24,18 @@ def train(model, args):
         val_loader = get_dataloader_wav(args.val_json, args.batch_size, False)
 
     criterion = CTCLoss(zero_infinity=True)
-    optimiser = SGD(model.parameters(), lr=args.lr)
+
+    if args.optimiser == "sgd":
+        optimiser = SGD(model.parameters(), lr=args.lr)
+    else:
+        optimiser = Adam(model.parameters(), lr=args.lr)
+
+    # Set the scheduler
+    if args.schedule_lr:
+        first_milestone = round(0.5*args.num_epochs)
+        second_milestone = args.num_epochs - first_milestone
+        scheduler_1 = ConstantLR(optimiser, factor=1, total_iters=first_milestone, verbose=True)
+        scheduler_2 = LinearLR(optimiser, start_factor=1, end_factor=0, total_iters=second_milestone, verbose=True)
 
     def train_one_epoch(epoch):
         running_loss = 0.0
@@ -76,9 +89,25 @@ def train(model, args):
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
     Path("checkpoints/{}".format(timestamp)).mkdir(parents=True, exist_ok=True)
     best_val_loss = 1e6
+
     for epoch in range(args.num_epochs):
-        print("EPOCH {}:".format(epoch + 1))
         model.train(True)
+
+        print(f"EPOCH {epoch+1}:")
+
+        # ADD THE FREEZING HERE. ASSUME MODEL IS FROZEN BEFORE.
+        if args.schedule_lr:
+            if epoch == UNFREEZE_EPOCH:
+                model.unfreeze_layers()
+            if epoch < first_milestone:
+                scheduler = scheduler_1
+            else:
+                scheduler = scheduler_2
+            print(f"ETA {scheduler.get_last_lr()}\n")
+
+        for param in model.parameters():
+            print('isNotFrozen ', param.requires_grad)
+            break
         avg_train_loss = train_one_epoch(epoch)
 
         model.train(False)
@@ -117,6 +146,9 @@ def train(model, args):
             val_loss = criterion(outputs, targets, in_lens, out_lens)
             running_val_loss += val_loss
         avg_val_loss = running_val_loss / len(val_loader)
+        if args.schedule_lr:
+            scheduler.step()
+            
         val_decode = decode(model, args, args.val_json)
         print(
             "LOSS train {:.5f} valid {:.5f}, valid PER {:.2f}%".format(

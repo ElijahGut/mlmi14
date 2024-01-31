@@ -1,11 +1,9 @@
-from dataloader import get_dataloader
+from jiwer import compute_measures, cer
 import torch
-from collections import Counter
-from datetime import datetime
-from trainer import train
 import models
-from decoder import decode
-import numpy as np
+
+from dataloader import get_dataloader, get_dataloader_wav
+from utils import concat_inputs
 import argparse
 
 parser = argparse.ArgumentParser(description = 'Running MLMI2 experiments')
@@ -34,41 +32,47 @@ parser.add_argument('--freeze-layers', type=int, default=0, help="The number of 
 
 args = parser.parse_args()
 
+# context code
 
 vocab = {}
-with open(args.vocab) as f:
+with open('data/vocab.txt') as f:
     for id, text in enumerate(f):
         vocab[text.strip()] = id
 
-if torch.cuda.is_available():
-    device = "cuda:0"
-else:
-    device = "cpu"
+model = models.Wav2Vec2CTC(len(vocab), 0)
+model_path = 'checkpoints/20240127_220426/model_20'
 
-print(args)
-args.device = device
-args.vocab = vocab
-
-if args.model == "wav2vec2":
-    model = models.Wav2Vec2CTC(len(args.vocab), args.freeze_layers)
-else:
-    model = models.BiLSTM(args.num_layers, args.fbank_dims * args.concat, args.model_dims, len(args.vocab))
-
-num_params = sum(p.numel() for p in model.parameters())
-print('Total number of model parameters is {}'.format(num_params))
-
-
-start = datetime.now()
-model.to(args.device)
-model_path = train(model, args)
-end = datetime.now()
-duration = (end - start).total_seconds()
-print('Training finished in {} minutes.'.format(divmod(duration, 60)[0]))
-print('Model saved to {}'.format(model_path))
+device = 'cpu'
 
 print('Loading model from {}'.format(model_path))
-model.load_state_dict(torch.load(model_path))
+model.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
 model.eval()
 model.to(device)
-results = decode(model, args, args.test_json)
-print("SUB: {:.2f}%, DEL: {:.2f}%, INS: {:.2f}%, COR: {:.2f}%, PER: {:.2f}%".format(*results))
+
+def decode(model, args, json_file, char=True):
+    idx2grapheme = {y: x for x, y in vocab.items()}
+    test_loader = get_dataloader_wav(json_file, 1, False)
+    stats = [0., 0., 0., 0.]
+    for data in test_loader:
+        inputs, in_lens, trans, _ = data
+        inputs = inputs.to(device)
+        in_lens = in_lens.to(device)
+        if args.use_fbank:
+            inputs, in_lens = concat_inputs(inputs, in_lens, factor=args.concat)
+        else:
+            inputs = inputs.transpose(0, 1)
+            in_lens = None
+        with torch.no_grad():
+            outputs = torch.nn.functional.softmax(model(inputs), dim=-1)
+            outputs = torch.argmax(outputs, dim=-1)
+            if in_lens is not None:
+                outputs = outputs.transpose(0, 1)
+        outputs = [[idx2grapheme[i] for i in j] for j in outputs.tolist()]
+        outputs = [[v for i, v in enumerate(j) if i == 0 or v != j[i - 1]] for j in outputs]
+        outputs = [list(filter(lambda elem: elem != "_", i)) for i in outputs]
+        outputs = [" ".join(i) for i in outputs]
+        if char:
+            cur_stats = cer(trans, outputs, return_dict=True)
+        break
+
+decode(model, args, 'data/test.json')

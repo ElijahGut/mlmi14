@@ -69,10 +69,12 @@ application="python -u run.py \
                 --val_json data/dev.json \
                 --test_json data/test.json \
                 --batch_size 4 \
-                --lr 0.001 \
+                --lr 0.0001 \
                 --vocab data/vocab.txt \
                 --model wav2vec2 \
+		--optimiser adam \
                 --num_epochs 20"
+
 
 #! Work directory (i.e. where the job will run):
 workdir="$SLURM_SUBMIT_DIR"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory
