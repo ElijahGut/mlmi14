@@ -32,7 +32,7 @@ def train(model, args):
 
     # Set the scheduler
     if args.schedule_lr:
-        first_milestone = round(0.5*args.num_epochs)
+        first_milestone = round(args.first_milestone*args.num_epochs) - 1
         second_milestone = args.num_epochs - first_milestone
         scheduler_1 = ConstantLR(optimiser, factor=1, total_iters=first_milestone, verbose=True)
         scheduler_2 = LinearLR(optimiser, start_factor=1, end_factor=0, total_iters=second_milestone, verbose=True)

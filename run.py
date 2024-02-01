@@ -31,8 +31,10 @@ parser.add_argument('--num_epochs', type=int, default=10)
 parser.add_argument('--optimiser', type=str, default="sgd")
 parser.add_argument('--schedule-lr', action="store_true")
 parser.add_argument('--freeze-layers', type=int, default=0, help="The number of first N transformer layers to freeze. -1 is for all.")
+parser.add_argument('--first-milestone', type=float, default=0.5, help="First milestone for learning rate scheduler as a fraction of num_epochs")
 
 args = parser.parse_args()
+
 
 
 vocab = {}
