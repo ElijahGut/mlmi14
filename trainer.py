@@ -48,6 +48,7 @@ def train(model, args):
 
 
     step_count = 0
+    etas = []
     def train_one_epoch(epoch):
         running_loss = 0.0
         last_loss = 0.0
@@ -103,6 +104,7 @@ def train(model, args):
                 print("  batch {} loss: {}".format(idx + 1, last_loss))
                 tb_x = epoch * len(train_loader) + idx + 1
                 running_loss = 0.0
+        etas.append(scheduler.get_last_lr())
         return last_loss
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -163,6 +165,9 @@ def train(model, args):
             val_loss = criterion(outputs, targets, in_lens, out_lens)
             running_val_loss += val_loss
         avg_val_loss = running_val_loss / len(val_loader)
+
+        # etas
+        print('ETAs, ', etas)
             
         val_decode = decode(model, args, args.val_json)
         print(
