@@ -123,7 +123,10 @@ def train(model, args):
         if args.warmup and epoch == 0:
             print(f'first 5 warmup etas, {warmup_etas[0:5]}, last 5 warmup etas, {warmup_etas[-5:]}')
 
-        etas.append(scheduler.get_last_lr())
+        if args.optimiser == 'noam':
+            etas.append(optimiser._optimiser.param_groups[0]['lr'])
+        else:
+            etas.append(scheduler.get_last_lr())
         return last_loss
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
