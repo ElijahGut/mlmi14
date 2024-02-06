@@ -9,6 +9,7 @@ from torch.optim import SGD, Adam
 from torch.optim.lr_scheduler import ChainedScheduler, LinearLR, ConstantLR
 from decoder import decode
 from utils import concat_inputs
+from noam import Noam
 
 from dataloader import get_dataloader, get_dataloader_wav
 
@@ -27,6 +28,9 @@ def train(model, args):
 
     if args.optimiser == "sgd":
         optimiser = SGD(model.parameters(), lr=args.lr)
+    elif args.optimiser == 'noam':
+        adam = Adam(model.parameters(), lr=args.lr)
+        optimiser = Noam(adam, 768, len(train_loader)*args.num_epochs*0.1)
     else:
         optimiser = Adam(model.parameters(), lr=args.lr)
 
@@ -46,7 +50,7 @@ def train(model, args):
         else:
             scheduler = constant_sched
 
-    print(f'total_steps {total_steps}, first_milestone {first_milestone}, second_milestone {second_milestone}')
+        print(f'total_steps {total_steps}, first_milestone {first_milestone}, second_milestone {second_milestone}')
 
     step_count = 0
     etas = []
