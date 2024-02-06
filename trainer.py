@@ -45,13 +45,13 @@ def train(model, args):
         else:
             scheduler = constant_sched
 
-
-
     step_count = 0
     etas = []
     def train_one_epoch(epoch):
         running_loss = 0.0
         last_loss = 0.0
+
+        nonlocal step_count,scheduler
 
         for idx, data in enumerate(train_loader):
             inputs, in_lens, trans, durations = data
