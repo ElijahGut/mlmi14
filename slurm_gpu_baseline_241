@@ -72,8 +72,9 @@ application="python -u run.py \
                 --lr 0.0001 \
                 --vocab data/vocab.txt \
                 --model wav2vec2 \
-                --num_epochs 10 \
+                --num_epochs 1 \
                 --schedule-lr \
+                --warmup \
                 --optimiser adam"
 
 #! Work directory (i.e. where the job will run):

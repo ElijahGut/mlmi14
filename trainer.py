@@ -113,7 +113,7 @@ def train(model, args):
                 running_loss = 0.0
 
         if args.warmup and epoch == 0:
-            print(f'first 5 warmup etas, {warmup_etas[0:5]}, last 5 warmup etas, {warmup_etas-5:]}')
+            print(f'first 5 warmup etas, {warmup_etas[0:5]}, last 5 warmup etas, {warmup_etas[-5:]}')
 
         etas.append(scheduler.get_last_lr())
         return last_loss
