@@ -28,13 +28,14 @@ parser.add_argument('--report_interval', type=int, default=50, help="report inte
 parser.add_argument('--num_epochs', type=int, default=10)
 
 # Inserted arguments for ease of experiments
-parser.add_argument('--optimiser', type=str, default="sgd")
+parser.add_argument('--optimiser', type=str, default="adam")
 parser.add_argument('--schedule-lr', action="store_true")
 parser.add_argument('--freeze-layers', type=int, default=0, help="The number of first N transformer layers to freeze. -1 is for all.")
-parser.add_argument('--first-milestone', type=float, default=0.5, help="First milestone for learning rate scheduler as a fraction of num_epochs")
+parser.add_argument('--inter-rep', type=int, default=0, help="The transformer layer whose representation we want to directly send to the output layer")
+parser.add_argument('--combine-reps', action="store_true", help="Combine representations?")
+parser.add_argument('--warmup', action="store_true", help="Use warmup?")
 
 args = parser.parse_args()
-
 
 
 vocab = {}
@@ -52,7 +53,7 @@ args.device = device
 args.vocab = vocab
 
 if args.model == "wav2vec2":
-    model = models.Wav2Vec2CTC(len(args.vocab), args.freeze_layers)
+    model = models.Wav2Vec2CTC(len(args.vocab), args.freeze_layers, args.inter_rep, args.combine_reps, args.warmup)
 else:
     model = models.BiLSTM(args.num_layers, args.fbank_dims * args.concat, args.model_dims, len(args.vocab))
 
@@ -72,5 +73,7 @@ print('Loading model from {}'.format(model_path))
 model.load_state_dict(torch.load(model_path))
 model.eval()
 model.to(device)
-results = decode(model, args, args.test_json)
-print("SUB: {:.2f}%, DEL: {:.2f}%, INS: {:.2f}%, COR: {:.2f}%, PER: {:.2f}%".format(*results))
+results_clean = decode(model, args, args.test_json)
+results_other = decode(model, args, 'data/test_other.json')
+print("CLEAN\n SUB: {:.2f}%, DEL: {:.2f}%, INS: {:.2f}%, COR: {:.2f}%, PER: {:.2f}%\n".format(*results_clean))
+print("OTHER\n SUB: {:.2f}%, DEL: {:.2f}%, INS: {:.2f}%, COR: {:.2f}%, PER: {:.2f}%\n".format(*results_other))

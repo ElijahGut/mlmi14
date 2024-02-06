@@ -20,8 +20,8 @@ def train(model, args):
         train_loader = get_dataloader(args.train_json, args.batch_size, True)
         val_loader = get_dataloader(args.val_json, args.batch_size, False)
     else:
-        train_loader = get_dataloader_wav(args.train_json, args.batch_size, True)
-        val_loader = get_dataloader_wav(args.val_json, args.batch_size, False)
+        train_loader = get_dataloader_wav(args.train_json, args.vocab.keys(), args.batch_size, True)
+        val_loader = get_dataloader_wav(args.val_json, args.vocab.keys(), args.batch_size, False)
 
     criterion = CTCLoss(zero_infinity=True)
 
@@ -32,11 +32,22 @@ def train(model, args):
 
     # Set the scheduler
     if args.schedule_lr:
-        first_milestone = round(args.first_milestone*args.num_epochs) - 1
-        second_milestone = args.num_epochs - first_milestone
-        scheduler_1 = ConstantLR(optimiser, factor=1, total_iters=first_milestone, verbose=True)
-        scheduler_2 = LinearLR(optimiser, start_factor=1, end_factor=0, total_iters=second_milestone, verbose=True)
+        print('TRAIN LOADER LENGTH/NUMBER OF STEPS, ', len(train_loader))
+        total_steps = len(train_loader)*args.num_epochs
+        first_milestone = 0.4*total_steps if args.warmup else 0.5*total_steps
+        second_milestone = total_steps - first_milestone
+        constant_sched = ConstantLR(optimiser, factor=1, total_iters=first_milestone)
+        decay_sched = LinearLR(optimiser, start_factor=1, end_factor=0, total_iters=second_milestone)
+        if args.warmup:
+            warmup_milestone = 0.1*total_steps
+            warmup_sched = LinearLR(optimiser, start_factor=0, end_factor=1, total_iters=warmup_milestone)
+            scheduler = warmup_sched
+        else:
+            scheduler = constant_sched
 
+
+
+    step_count = 0
     def train_one_epoch(epoch):
         running_loss = 0.0
         last_loss = 0.0
@@ -78,6 +89,14 @@ def train(model, args):
             loss.backward()
             optimiser.step()
 
+            if args.lr_scheduler:
+                if args.warmup and step_count == warmup_milestone:
+                    scheduler = constant_sched
+                if step_count == first_milestone:
+                    scheduler = decay_sched
+                scheduler.step()
+                step_count += 1
+
             running_loss += loss.item()
             if idx % args.report_interval + 1 == args.report_interval:
                 last_loss = running_loss / args.report_interval
@@ -92,26 +111,24 @@ def train(model, args):
 
     for epoch in range(args.num_epochs):
         model.train(True)
-
-        print(f"EPOCH {epoch+1}:")
-
         # ADD THE FREEZING HERE. ASSUME MODEL IS FROZEN BEFORE.
         if args.schedule_lr:
             if epoch == UNFREEZE_EPOCH:
                 model.unfreeze_layers()
-            if epoch < first_milestone:
-                scheduler = scheduler_1
-            else:
-                scheduler = scheduler_2
-            print(f"ETA {scheduler.get_last_lr()}\n")
 
+        print(f"EPOCH {epoch+1}:")
         for param in model.parameters():
             print('isNotFrozen ', param.requires_grad)
             break
+        
         avg_train_loss = train_one_epoch(epoch)
 
         model.train(False)
         running_val_loss = 0.0
+
+        if model.combine_reps:
+            print('LAYER WEIGHTS, ', model.layer_weights)
+
         for idx, data in enumerate(val_loader):
             inputs, in_lens, trans, durations = data
             inputs = inputs.to(args.device)
@@ -146,8 +163,6 @@ def train(model, args):
             val_loss = criterion(outputs, targets, in_lens, out_lens)
             running_val_loss += val_loss
         avg_val_loss = running_val_loss / len(val_loader)
-        if args.schedule_lr:
-            scheduler.step()
             
         val_decode = decode(model, args, args.val_json)
         print(
