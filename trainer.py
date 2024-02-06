@@ -40,13 +40,14 @@ def train(model, args):
         decay_sched = LinearLR(optimiser, start_factor=1, end_factor=0, total_iters=second_milestone)
         if args.warmup:
             warmup_milestone = 0.1*total_steps
+            print(f'warmup_milestone {warmup_milestone}')
             warmup_sched = LinearLR(optimiser, start_factor=0.0001, end_factor=1, total_iters=warmup_milestone)
             scheduler = warmup_sched
         else:
             scheduler = constant_sched
 
-    print(f'total_steps {total_steps}, warmup_milestone {warmup_milestone}, first_milestone {first_milestone}, second_milestone {second_milestone}')
-
+    print(f'total_steps {total_steps}, first_milestone {first_milestone}, second_milestone {second_milestone}')
+    
     step_count = 0
     etas = []
     def train_one_epoch(epoch):
