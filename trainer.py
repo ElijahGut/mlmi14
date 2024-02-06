@@ -47,7 +47,7 @@ def train(model, args):
             scheduler = constant_sched
 
     print(f'total_steps {total_steps}, first_milestone {first_milestone}, second_milestone {second_milestone}')
-    
+
     step_count = 0
     etas = []
     def train_one_epoch(epoch):
@@ -107,6 +107,8 @@ def train(model, args):
                 print("  batch {} loss: {}".format(idx + 1, last_loss))
                 tb_x = epoch * len(train_loader) + idx + 1
                 running_loss = 0.0
+        if args.warmup and epoch == 0:
+            print(f'first 5 warmup etas, {etas[0:5]}, last 5 warmup etas, {etas[-5:]}')
         etas.append(scheduler.get_last_lr())
         return last_loss
 
