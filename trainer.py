@@ -45,6 +45,8 @@ def train(model, args):
         else:
             scheduler = constant_sched
 
+    print(f'total_steps {total_steps}, warmup_milestone {warmup_milestone}, first_milestone {first_milestone}, second_milestone {second_milestone}')
+
     step_count = 0
     etas = []
     def train_one_epoch(epoch):
@@ -167,7 +169,7 @@ def train(model, args):
         avg_val_loss = running_val_loss / len(val_loader)
 
         # etas
-        print('ETAs, ', etas)
+        print('last epoch eta, ', etas[-1])
             
         val_decode = decode(model, args, args.val_json)
         print(
