@@ -20,8 +20,8 @@ def train(model, args):
         train_loader = get_dataloader(args.train_json, args.batch_size, True)
         val_loader = get_dataloader(args.val_json, args.batch_size, False)
     else:
-        train_loader = get_dataloader_wav(args.train_json, args.vocab.keys(), args.batch_size, True)
-        val_loader = get_dataloader_wav(args.val_json, args.vocab.keys(), args.batch_size, False)
+        train_loader = get_dataloader_wav(args.train_json, args.batch_size, True)
+        val_loader = get_dataloader_wav(args.val_json, args.batch_size, False)
 
     criterion = CTCLoss(zero_infinity=True)
 
@@ -90,7 +90,7 @@ def train(model, args):
             loss.backward()
             optimiser.step()
 
-            if args.lr_scheduler:
+            if args.schedule_lr:
                 if args.warmup and step_count == warmup_milestone:
                     scheduler = constant_sched
                 if step_count == first_milestone:
