@@ -50,6 +50,7 @@ def train(model, args):
 
     step_count = 0
     etas = []
+    warmup_etas = []
     def train_one_epoch(epoch):
         running_loss = 0.0
         last_loss = 0.0
@@ -101,14 +102,19 @@ def train(model, args):
                 scheduler.step()
                 step_count += 1
 
+            if args.warmup and epoch == 0:
+                warmup_etas.append(scheduler.get_last_lr())
+
             running_loss += loss.item()
             if idx % args.report_interval + 1 == args.report_interval:
                 last_loss = running_loss / args.report_interval
                 print("  batch {} loss: {}".format(idx + 1, last_loss))
                 tb_x = epoch * len(train_loader) + idx + 1
                 running_loss = 0.0
+
         if args.warmup and epoch == 0:
-            print(f'first 5 warmup etas, {etas[0:5]}, last 5 warmup etas, {etas[-5:]}')
+            print(f'first 5 warmup etas, {warmup_etas[0:5]}, last 5 warmup etas, {warmup_etas-5:]}')
+
         etas.append(scheduler.get_last_lr())
         return last_loss
 
