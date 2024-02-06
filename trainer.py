@@ -96,7 +96,11 @@ def train(model, args):
                 outputs = outputs.transpose(0, 1)
             loss = criterion(outputs, targets, in_lens, out_lens)
             loss.backward()
-            optimiser.step()
+
+            if args.optimiser == 'noam':
+                optimiser.step_and_update_lr()
+            else:
+                optimiser.step()
 
             if args.schedule_lr:
                 if args.warmup and step_count == warmup_milestone:
