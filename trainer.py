@@ -29,8 +29,8 @@ def train(model, args):
     if args.optimiser == "sgd":
         optimiser = SGD(model.parameters(), lr=args.lr)
     elif args.optimiser == 'noam':
-        adam = Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09)
-        optimiser = Noam(adam, 768, 4000)
+        adam = Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09, lr=0.123)
+        optimiser = Noam(adam, 0.123, 768, 2000)
     else:
         optimiser = Adam(model.parameters(), lr=args.lr)
 
