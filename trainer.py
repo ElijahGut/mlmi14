@@ -29,8 +29,8 @@ def train(model, args):
     if args.optimiser == "sgd":
         optimiser = SGD(model.parameters(), lr=args.lr)
     elif args.optimiser == 'noam':
-        adam = Adam(model.parameters(), lr=args.lr)
-        optimiser = Noam(adam, 768, len(train_loader)*args.num_epochs*0.1)
+        adam = Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09)
+        optimiser = Noam(adam, 768, 4000)
     else:
         optimiser = Adam(model.parameters(), lr=args.lr)
 
@@ -59,7 +59,7 @@ def train(model, args):
         running_loss = 0.0
         last_loss = 0.0
 
-        nonlocal step_count,scheduler
+        nonlocal step_count, scheduler
 
         for idx, data in enumerate(train_loader):
             inputs, in_lens, trans, durations = data
@@ -202,4 +202,9 @@ def train(model, args):
             best_val_loss = avg_val_loss
             model_path = "checkpoints/{}/model_{}".format(timestamp, epoch + 1)
             torch.save(model.state_dict(), model_path)
+    
+    # write etas
+    with open(f'logs/etas/{timestamp}', 'w+') as f:
+        f.write(str(etas))
+
     return model_path
