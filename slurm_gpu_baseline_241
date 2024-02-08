@@ -73,7 +73,9 @@ application="python -u run.py \
                 --vocab data/vocab.txt \
                 --model wav2vec2 \
                 --num_epochs 10 \
-                --optimiser noam"
+                --schedule-lr \
+                --freeze-layers -1 \
+                --optimiser adam"
 
 #! Work directory (i.e. where the job will run):
 workdir="$SLURM_SUBMIT_DIR"  # The value of SLURM_SUBMIT_DIR sets workdir to the directory

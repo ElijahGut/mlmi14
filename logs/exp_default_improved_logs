@@ -1,0 +1,240 @@
+Namespace(seed=123, train_json='data/train.json', val_json='data/dev.json', test_json='data/test.json', batch_size=4, num_layers=1, fbank_dims=23, model_dims=128, concat=3, lr=0.0001, vocab='data/vocab.txt', use_fbank=False, model='wav2vec2', report_interval=50, num_epochs=10, optimiser='adam', schedule_lr=True, freeze_layers=-1, inter_rep=0, combine_reps=False, warmup=False)
+Total number of model parameters is 94402472
+TRAIN LOADER LENGTH/NUMBER OF STEPS,  924
+total_steps 9240, first_milestone 4620.0, second_milestone 4620.0
+EPOCH 1:
+isNotFrozen  False
+  batch 50 loss: 10.781891174316407
+  batch 100 loss: 8.425328454971314
+  batch 150 loss: 6.537365665435791
+  batch 200 loss: 5.01004771232605
+  batch 250 loss: 4.195573353767395
+  batch 300 loss: 3.788358573913574
+  batch 350 loss: 3.6119267654418947
+  batch 400 loss: 3.5429643392562866
+  batch 450 loss: 3.4336174869537355
+  batch 500 loss: 3.399315881729126
+  batch 550 loss: 3.3627024841308595
+  batch 600 loss: 3.3353566312789917
+  batch 650 loss: 3.349148449897766
+  batch 700 loss: 3.3463945102691652
+  batch 750 loss: 3.310926008224487
+  batch 800 loss: 3.303345956802368
+  batch 850 loss: 3.2959065866470336
+  batch 900 loss: 3.272073926925659
+last epoch eta,  [0.0001]
+step count :924, len etas: 924
+LOSS train 3.27207 valid 3.51324, valid PER 99.98%
+EPOCH 2:
+isNotFrozen  False
+  batch 50 loss: 3.2571763706207277
+  batch 100 loss: 3.2431713342666626
+  batch 150 loss: 3.253344650268555
+  batch 200 loss: 3.2344166088104247
+  batch 250 loss: 3.2185581064224245
+  batch 300 loss: 3.2312771463394165
+  batch 350 loss: 3.2090742444992064
+  batch 400 loss: 3.203485856056213
+  batch 450 loss: 3.193562831878662
+  batch 500 loss: 3.212489128112793
+  batch 550 loss: 3.1934992694854736
+  batch 600 loss: 3.1675504350662234
+  batch 650 loss: 3.1709104347229005
+  batch 700 loss: 3.1656462001800536
+  batch 750 loss: 3.172433319091797
+  batch 800 loss: 3.1468553066253664
+  batch 850 loss: 3.142221922874451
+  batch 900 loss: 3.123010125160217
+last epoch eta,  [0.0001]
+step count :1848, len etas: 1848
+LOSS train 3.12301 valid 3.25348, valid PER 98.08%
+EPOCH 3:
+isNotFrozen  False
+  batch 50 loss: 3.0992666339874266
+  batch 100 loss: 3.0816137981414795
+  batch 150 loss: 3.0855282878875734
+  batch 200 loss: 3.0670918226242065
+  batch 250 loss: 3.0281948184967042
+  batch 300 loss: 3.053848900794983
+  batch 350 loss: 3.036322717666626
+  batch 400 loss: 3.0170987939834593
+  batch 450 loss: 3.021651864051819
+  batch 500 loss: 2.9635695362091066
+  batch 550 loss: 2.9632796573638918
+  batch 600 loss: 2.9274875688552857
+  batch 650 loss: 2.8994150972366333
+  batch 700 loss: 2.893644690513611
+  batch 750 loss: 2.890486397743225
+  batch 800 loss: 2.8535890626907348
+  batch 850 loss: 2.8556633377075196
+  batch 900 loss: 2.8141541337966918
+last epoch eta,  [0.0001]
+step count :2772, len etas: 2772
+LOSS train 2.81415 valid 2.84283, valid PER 82.89%
+EPOCH 4:
+isNotFrozen  True
+  batch 50 loss: 1.9999643611907958
+  batch 100 loss: 1.2471746253967284
+  batch 150 loss: 0.8331916570663452
+  batch 200 loss: 0.7177422058582306
+  batch 250 loss: 0.6515705823898316
+  batch 300 loss: 0.6587975931167602
+  batch 350 loss: 0.5955637574195862
+  batch 400 loss: 0.6159020787477494
+  batch 450 loss: 0.5604821002483368
+  batch 500 loss: 0.5218877798318863
+  batch 550 loss: 0.572457624077797
+  batch 600 loss: 0.5972312641143799
+  batch 650 loss: 0.5305634224414826
+  batch 700 loss: 0.5307089030742645
+  batch 750 loss: 0.5060115325450897
+  batch 800 loss: 0.49585449367761614
+  batch 850 loss: 0.4810788702964783
+  batch 900 loss: 0.5424765783548355
+last epoch eta,  [0.0001]
+step count :3696, len etas: 3696
+LOSS train 0.54248 valid 0.32718, valid PER 9.96%
+EPOCH 5:
+isNotFrozen  True
+  batch 50 loss: 0.3847650760412216
+  batch 100 loss: 0.4760301664471626
+  batch 150 loss: 0.47000418841838837
+  batch 200 loss: 0.4437426322698593
+  batch 250 loss: 0.4586088389158249
+  batch 300 loss: 0.5547902226448059
+  batch 350 loss: 0.47341834247112274
+  batch 400 loss: 0.43315205931663514
+  batch 450 loss: 0.4146423989534378
+  batch 500 loss: 0.4506437093019485
+  batch 550 loss: 0.4147057455778122
+  batch 600 loss: 0.41305617451667787
+  batch 650 loss: 0.41014284908771514
+  batch 700 loss: 0.45451338052749635
+  batch 750 loss: 0.4313838249444962
+  batch 800 loss: 0.45312427043914794
+  batch 850 loss: 0.42143373042345045
+  batch 900 loss: 0.43203300297260283
+last epoch eta,  [0.0001]
+step count :4620, len etas: 4620
+LOSS train 0.43203 valid 0.34346, valid PER 10.69%
+EPOCH 6:
+isNotFrozen  True
+  batch 50 loss: 0.37111746311187743
+  batch 100 loss: 0.3841890636086464
+  batch 150 loss: 0.3405005154013634
+  batch 200 loss: 0.3628619858622551
+  batch 250 loss: 0.40191985249519346
+  batch 300 loss: 0.40459561824798584
+  batch 350 loss: 0.37579818576574325
+  batch 400 loss: 0.36672408014535907
+  batch 450 loss: 0.38698239758610725
+  batch 500 loss: 0.360496401488781
+  batch 550 loss: 0.36878531992435454
+  batch 600 loss: 0.3228647831082344
+  batch 650 loss: 0.3542787703871727
+  batch 700 loss: 0.38564983397722247
+  batch 750 loss: 0.3574608835577965
+  batch 800 loss: 0.3619382253289223
+  batch 850 loss: 0.32049424439668656
+  batch 900 loss: 0.3441162994503975
+last epoch eta,  [7.999999999999974e-05]
+step count :5544, len etas: 5544
+LOSS train 0.34412 valid 0.38936, valid PER 12.88%
+EPOCH 7:
+isNotFrozen  True
+  batch 50 loss: 0.44270007401704786
+  batch 100 loss: 0.3572606021165848
+  batch 150 loss: 0.3150796139240265
+  batch 200 loss: 0.305592947602272
+  batch 250 loss: 0.2879463648796082
+  batch 300 loss: 0.3090355184674263
+  batch 350 loss: 0.3190650752186775
+  batch 400 loss: 0.327516870200634
+  batch 450 loss: 0.3180763626098633
+  batch 500 loss: 0.31561955600976943
+  batch 550 loss: 0.28905940771102906
+  batch 600 loss: 0.28259493291378024
+  batch 650 loss: 0.30369227930903436
+  batch 700 loss: 0.29630607217550275
+  batch 750 loss: 0.27804565548896787
+  batch 800 loss: 0.2990556815266609
+  batch 850 loss: 0.28893541246652604
+  batch 900 loss: 0.3701995238661766
+last epoch eta,  [6.0000000000000123e-05]
+step count :6468, len etas: 6468
+LOSS train 0.37020 valid 0.29889, valid PER 9.08%
+EPOCH 8:
+isNotFrozen  True
+  batch 50 loss: 0.25926592588424685
+  batch 100 loss: 0.24754343047738075
+  batch 150 loss: 0.28340615570545197
+  batch 200 loss: 0.2618555718660355
+  batch 250 loss: 0.24994183525443078
+  batch 300 loss: 0.2557362332940102
+  batch 350 loss: 0.264094406068325
+  batch 400 loss: 0.2502193716168404
+  batch 450 loss: 0.25861881256103514
+  batch 500 loss: 0.2463074468076229
+  batch 550 loss: 0.22597792446613313
+  batch 600 loss: 0.2493843576312065
+  batch 650 loss: 0.26506256133317946
+  batch 700 loss: 0.24119923651218414
+  batch 750 loss: 0.26383701801300047
+  batch 800 loss: 0.26248021006584166
+  batch 850 loss: 0.2442651954293251
+  batch 900 loss: 0.2549862560629845
+last epoch eta,  [3.999999999999979e-05]
+step count :7392, len etas: 7392
+LOSS train 0.25499 valid 0.27603, valid PER 8.45%
+EPOCH 9:
+isNotFrozen  True
+  batch 50 loss: 0.22125842154026032
+  batch 100 loss: 0.2012643437087536
+  batch 150 loss: 0.2169869314134121
+  batch 200 loss: 0.21036795169115066
+  batch 250 loss: 0.19981450960040092
+  batch 300 loss: 0.2068026189506054
+  batch 350 loss: 0.22067118167877198
+  batch 400 loss: 0.20872038662433623
+  batch 450 loss: 0.21313920706510545
+  batch 500 loss: 0.22608391016721727
+  batch 550 loss: 0.2254730671644211
+  batch 600 loss: 0.2052099186182022
+  batch 650 loss: 0.21785011664032936
+  batch 700 loss: 0.21420389652252197
+  batch 750 loss: 0.20553696349263192
+  batch 800 loss: 0.22085137635469437
+  batch 850 loss: 0.19940827414393425
+  batch 900 loss: 0.18846731200814248
+last epoch eta,  [1.9999999999999653e-05]
+step count :8316, len etas: 8316
+LOSS train 0.18847 valid 0.27258, valid PER 8.11%
+EPOCH 10:
+isNotFrozen  True
+  batch 50 loss: 0.15830438062548638
+  batch 100 loss: 0.1857790021598339
+  batch 150 loss: 0.18169861927628517
+  batch 200 loss: 0.1741503793746233
+  batch 250 loss: 0.1961332294344902
+  batch 300 loss: 0.185950445830822
+  batch 350 loss: 0.1694326801598072
+  batch 400 loss: 0.17614004835486413
+  batch 450 loss: 0.17028952535241842
+  batch 500 loss: 0.16548497341573237
+  batch 550 loss: 0.1956450881063938
+  batch 600 loss: 0.15999565690755843
+  batch 650 loss: 0.17611468017101287
+  batch 700 loss: 0.1719061353802681
+  batch 750 loss: 0.16219666212797165
+  batch 800 loss: 0.1668446710705757
+  batch 850 loss: 0.16576056443154813
+  batch 900 loss: 0.1648213618993759
+last epoch eta,  [0.0]
+step count :9240, len etas: 9240
+LOSS train 0.16482 valid 0.27309, valid PER 7.91%
+Training finished in 12.0 minutes.
+Model saved to checkpoints/20240208_115650/model_9
+Loading model from checkpoints/20240208_115650/model_9
+CLEAN
+ SUB: 5.35%, DEL: 2.11%, INS: 2.00%, COR: 92.53%, PER: 9.47%
+
