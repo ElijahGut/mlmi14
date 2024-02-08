@@ -108,6 +108,7 @@ def train(model, args):
                 if step_count == first_milestone:
                     scheduler = decay_sched
                 scheduler.step()
+                etas.append(scheduler.get_last_lr())
                 step_count += 1
 
             if args.warmup and epoch == 0:
@@ -125,8 +126,6 @@ def train(model, args):
 
         if args.optimiser == 'noam':
             etas.append(optimiser._optimiser.param_groups[0]['lr'])
-        else:
-            etas.append(scheduler.get_last_lr())
         return last_loss
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -190,6 +189,7 @@ def train(model, args):
 
         # etas
         print('last epoch eta, ', etas[-1])
+        print(f'step count :{step_count}, len etas: {len(etas)}')
             
         val_decode = decode(model, args, args.val_json)
         print(
