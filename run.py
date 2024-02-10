@@ -61,6 +61,7 @@ num_params = sum(p.numel() for p in model.parameters())
 print('Total number of model parameters is {}'.format(num_params))
 
 start = datetime.now()
+model = torch.compile(model, mode='reduce-overhead')
 model.to(args.device)
 model_path = train(model, args)
 end = datetime.now()
