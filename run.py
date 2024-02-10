@@ -60,6 +60,7 @@ else:
 num_params = sum(p.numel() for p in model.parameters())
 print('Total number of model parameters is {}'.format(num_params))
 
+model.unfreeze_layers()
 
 start = datetime.now()
 model.to(args.device)

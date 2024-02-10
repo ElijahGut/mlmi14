@@ -51,6 +51,8 @@ class Wav2Vec2CTC(nn.Module):
     def freeze_layers(self, freeze_up_to_lyr):
         if freeze_up_to_lyr != 0:
             for n,p in self.model.named_parameters():
+                # if n == 'masked_spec_embed':
+                #     p.requires_grad = False
                 if freeze_up_to_lyr == -1:
                     p.requires_grad = False
                 elif freeze_up_to_lyr > 0:
@@ -66,8 +68,10 @@ class Wav2Vec2CTC(nn.Module):
     def unfreeze_layers(self):
         for param in self.model.encoder.parameters():
             param.requires_grad = True
-        for param in self.model.feature_extractor.parameters():
-            param.requires_grad = True
+        for n,p in self.model.named_parameters():
+            if n == 'masked_spec_embed':
+                p.requires_grad = True
+                break
 
         print('UNFROZEN LAYERS: ')
         for n,p in self.model.named_parameters():
