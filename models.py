@@ -58,8 +58,17 @@ class Wav2Vec2CTC(nn.Module):
                         layer_no = int(n.split('.')[2])
                         if layer_no < freeze_up_to_lyr:
                             p.requires_grad = False 
+        print('FROZEN LAYERS: ')
+        for n,p in self.model.named_parameters():
+            print(n, p.requires_grad)
         return
 
     def unfreeze_layers(self):
-        for param in self.model.parameters():
+        for param in self.model.encoder.parameters():
             param.requires_grad = True
+        for param in self.model.feature_extractor.parameters():
+            param.requires_grad = True
+
+        print('UNFROZEN LAYERS: ')
+        for n,p in self.model.named_parameters():
+            print(n, p.requires_grad)
