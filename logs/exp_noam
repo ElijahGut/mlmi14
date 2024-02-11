@@ -1,228 +1,450 @@
 Namespace(seed=123, train_json='data/train.json', val_json='data/dev.json', test_json='data/test.json', batch_size=4, num_layers=1, fbank_dims=23, model_dims=128, concat=3, lr=0.0001, vocab='data/vocab.txt', use_fbank=False, model='wav2vec2', report_interval=50, num_epochs=10, optimiser='noam', schedule_lr=False, freeze_layers=0, inter_rep=0, combine_reps=False, warmup=False)
+FROZEN LAYERS: 
+masked_spec_embed True
+feature_extractor.conv_layers.0.conv.weight False
+feature_extractor.conv_layers.0.layer_norm.weight False
+feature_extractor.conv_layers.0.layer_norm.bias False
+feature_extractor.conv_layers.1.conv.weight False
+feature_extractor.conv_layers.2.conv.weight False
+feature_extractor.conv_layers.3.conv.weight False
+feature_extractor.conv_layers.4.conv.weight False
+feature_extractor.conv_layers.5.conv.weight False
+feature_extractor.conv_layers.6.conv.weight False
+feature_projection.layer_norm.weight True
+feature_projection.layer_norm.bias True
+feature_projection.projection.weight True
+feature_projection.projection.bias True
+encoder.pos_conv_embed.conv.bias True
+encoder.pos_conv_embed.conv.weight_g True
+encoder.pos_conv_embed.conv.weight_v True
+encoder.layer_norm.weight True
+encoder.layer_norm.bias True
+encoder.layers.0.attention.k_proj.weight True
+encoder.layers.0.attention.k_proj.bias True
+encoder.layers.0.attention.v_proj.weight True
+encoder.layers.0.attention.v_proj.bias True
+encoder.layers.0.attention.q_proj.weight True
+encoder.layers.0.attention.q_proj.bias True
+encoder.layers.0.attention.out_proj.weight True
+encoder.layers.0.attention.out_proj.bias True
+encoder.layers.0.layer_norm.weight True
+encoder.layers.0.layer_norm.bias True
+encoder.layers.0.feed_forward.intermediate_dense.weight True
+encoder.layers.0.feed_forward.intermediate_dense.bias True
+encoder.layers.0.feed_forward.output_dense.weight True
+encoder.layers.0.feed_forward.output_dense.bias True
+encoder.layers.0.final_layer_norm.weight True
+encoder.layers.0.final_layer_norm.bias True
+encoder.layers.1.attention.k_proj.weight True
+encoder.layers.1.attention.k_proj.bias True
+encoder.layers.1.attention.v_proj.weight True
+encoder.layers.1.attention.v_proj.bias True
+encoder.layers.1.attention.q_proj.weight True
+encoder.layers.1.attention.q_proj.bias True
+encoder.layers.1.attention.out_proj.weight True
+encoder.layers.1.attention.out_proj.bias True
+encoder.layers.1.layer_norm.weight True
+encoder.layers.1.layer_norm.bias True
+encoder.layers.1.feed_forward.intermediate_dense.weight True
+encoder.layers.1.feed_forward.intermediate_dense.bias True
+encoder.layers.1.feed_forward.output_dense.weight True
+encoder.layers.1.feed_forward.output_dense.bias True
+encoder.layers.1.final_layer_norm.weight True
+encoder.layers.1.final_layer_norm.bias True
+encoder.layers.2.attention.k_proj.weight True
+encoder.layers.2.attention.k_proj.bias True
+encoder.layers.2.attention.v_proj.weight True
+encoder.layers.2.attention.v_proj.bias True
+encoder.layers.2.attention.q_proj.weight True
+encoder.layers.2.attention.q_proj.bias True
+encoder.layers.2.attention.out_proj.weight True
+encoder.layers.2.attention.out_proj.bias True
+encoder.layers.2.layer_norm.weight True
+encoder.layers.2.layer_norm.bias True
+encoder.layers.2.feed_forward.intermediate_dense.weight True
+encoder.layers.2.feed_forward.intermediate_dense.bias True
+encoder.layers.2.feed_forward.output_dense.weight True
+encoder.layers.2.feed_forward.output_dense.bias True
+encoder.layers.2.final_layer_norm.weight True
+encoder.layers.2.final_layer_norm.bias True
+encoder.layers.3.attention.k_proj.weight True
+encoder.layers.3.attention.k_proj.bias True
+encoder.layers.3.attention.v_proj.weight True
+encoder.layers.3.attention.v_proj.bias True
+encoder.layers.3.attention.q_proj.weight True
+encoder.layers.3.attention.q_proj.bias True
+encoder.layers.3.attention.out_proj.weight True
+encoder.layers.3.attention.out_proj.bias True
+encoder.layers.3.layer_norm.weight True
+encoder.layers.3.layer_norm.bias True
+encoder.layers.3.feed_forward.intermediate_dense.weight True
+encoder.layers.3.feed_forward.intermediate_dense.bias True
+encoder.layers.3.feed_forward.output_dense.weight True
+encoder.layers.3.feed_forward.output_dense.bias True
+encoder.layers.3.final_layer_norm.weight True
+encoder.layers.3.final_layer_norm.bias True
+encoder.layers.4.attention.k_proj.weight True
+encoder.layers.4.attention.k_proj.bias True
+encoder.layers.4.attention.v_proj.weight True
+encoder.layers.4.attention.v_proj.bias True
+encoder.layers.4.attention.q_proj.weight True
+encoder.layers.4.attention.q_proj.bias True
+encoder.layers.4.attention.out_proj.weight True
+encoder.layers.4.attention.out_proj.bias True
+encoder.layers.4.layer_norm.weight True
+encoder.layers.4.layer_norm.bias True
+encoder.layers.4.feed_forward.intermediate_dense.weight True
+encoder.layers.4.feed_forward.intermediate_dense.bias True
+encoder.layers.4.feed_forward.output_dense.weight True
+encoder.layers.4.feed_forward.output_dense.bias True
+encoder.layers.4.final_layer_norm.weight True
+encoder.layers.4.final_layer_norm.bias True
+encoder.layers.5.attention.k_proj.weight True
+encoder.layers.5.attention.k_proj.bias True
+encoder.layers.5.attention.v_proj.weight True
+encoder.layers.5.attention.v_proj.bias True
+encoder.layers.5.attention.q_proj.weight True
+encoder.layers.5.attention.q_proj.bias True
+encoder.layers.5.attention.out_proj.weight True
+encoder.layers.5.attention.out_proj.bias True
+encoder.layers.5.layer_norm.weight True
+encoder.layers.5.layer_norm.bias True
+encoder.layers.5.feed_forward.intermediate_dense.weight True
+encoder.layers.5.feed_forward.intermediate_dense.bias True
+encoder.layers.5.feed_forward.output_dense.weight True
+encoder.layers.5.feed_forward.output_dense.bias True
+encoder.layers.5.final_layer_norm.weight True
+encoder.layers.5.final_layer_norm.bias True
+encoder.layers.6.attention.k_proj.weight True
+encoder.layers.6.attention.k_proj.bias True
+encoder.layers.6.attention.v_proj.weight True
+encoder.layers.6.attention.v_proj.bias True
+encoder.layers.6.attention.q_proj.weight True
+encoder.layers.6.attention.q_proj.bias True
+encoder.layers.6.attention.out_proj.weight True
+encoder.layers.6.attention.out_proj.bias True
+encoder.layers.6.layer_norm.weight True
+encoder.layers.6.layer_norm.bias True
+encoder.layers.6.feed_forward.intermediate_dense.weight True
+encoder.layers.6.feed_forward.intermediate_dense.bias True
+encoder.layers.6.feed_forward.output_dense.weight True
+encoder.layers.6.feed_forward.output_dense.bias True
+encoder.layers.6.final_layer_norm.weight True
+encoder.layers.6.final_layer_norm.bias True
+encoder.layers.7.attention.k_proj.weight True
+encoder.layers.7.attention.k_proj.bias True
+encoder.layers.7.attention.v_proj.weight True
+encoder.layers.7.attention.v_proj.bias True
+encoder.layers.7.attention.q_proj.weight True
+encoder.layers.7.attention.q_proj.bias True
+encoder.layers.7.attention.out_proj.weight True
+encoder.layers.7.attention.out_proj.bias True
+encoder.layers.7.layer_norm.weight True
+encoder.layers.7.layer_norm.bias True
+encoder.layers.7.feed_forward.intermediate_dense.weight True
+encoder.layers.7.feed_forward.intermediate_dense.bias True
+encoder.layers.7.feed_forward.output_dense.weight True
+encoder.layers.7.feed_forward.output_dense.bias True
+encoder.layers.7.final_layer_norm.weight True
+encoder.layers.7.final_layer_norm.bias True
+encoder.layers.8.attention.k_proj.weight True
+encoder.layers.8.attention.k_proj.bias True
+encoder.layers.8.attention.v_proj.weight True
+encoder.layers.8.attention.v_proj.bias True
+encoder.layers.8.attention.q_proj.weight True
+encoder.layers.8.attention.q_proj.bias True
+encoder.layers.8.attention.out_proj.weight True
+encoder.layers.8.attention.out_proj.bias True
+encoder.layers.8.layer_norm.weight True
+encoder.layers.8.layer_norm.bias True
+encoder.layers.8.feed_forward.intermediate_dense.weight True
+encoder.layers.8.feed_forward.intermediate_dense.bias True
+encoder.layers.8.feed_forward.output_dense.weight True
+encoder.layers.8.feed_forward.output_dense.bias True
+encoder.layers.8.final_layer_norm.weight True
+encoder.layers.8.final_layer_norm.bias True
+encoder.layers.9.attention.k_proj.weight True
+encoder.layers.9.attention.k_proj.bias True
+encoder.layers.9.attention.v_proj.weight True
+encoder.layers.9.attention.v_proj.bias True
+encoder.layers.9.attention.q_proj.weight True
+encoder.layers.9.attention.q_proj.bias True
+encoder.layers.9.attention.out_proj.weight True
+encoder.layers.9.attention.out_proj.bias True
+encoder.layers.9.layer_norm.weight True
+encoder.layers.9.layer_norm.bias True
+encoder.layers.9.feed_forward.intermediate_dense.weight True
+encoder.layers.9.feed_forward.intermediate_dense.bias True
+encoder.layers.9.feed_forward.output_dense.weight True
+encoder.layers.9.feed_forward.output_dense.bias True
+encoder.layers.9.final_layer_norm.weight True
+encoder.layers.9.final_layer_norm.bias True
+encoder.layers.10.attention.k_proj.weight True
+encoder.layers.10.attention.k_proj.bias True
+encoder.layers.10.attention.v_proj.weight True
+encoder.layers.10.attention.v_proj.bias True
+encoder.layers.10.attention.q_proj.weight True
+encoder.layers.10.attention.q_proj.bias True
+encoder.layers.10.attention.out_proj.weight True
+encoder.layers.10.attention.out_proj.bias True
+encoder.layers.10.layer_norm.weight True
+encoder.layers.10.layer_norm.bias True
+encoder.layers.10.feed_forward.intermediate_dense.weight True
+encoder.layers.10.feed_forward.intermediate_dense.bias True
+encoder.layers.10.feed_forward.output_dense.weight True
+encoder.layers.10.feed_forward.output_dense.bias True
+encoder.layers.10.final_layer_norm.weight True
+encoder.layers.10.final_layer_norm.bias True
+encoder.layers.11.attention.k_proj.weight True
+encoder.layers.11.attention.k_proj.bias True
+encoder.layers.11.attention.v_proj.weight True
+encoder.layers.11.attention.v_proj.bias True
+encoder.layers.11.attention.q_proj.weight True
+encoder.layers.11.attention.q_proj.bias True
+encoder.layers.11.attention.out_proj.weight True
+encoder.layers.11.attention.out_proj.bias True
+encoder.layers.11.layer_norm.weight True
+encoder.layers.11.layer_norm.bias True
+encoder.layers.11.feed_forward.intermediate_dense.weight True
+encoder.layers.11.feed_forward.intermediate_dense.bias True
+encoder.layers.11.feed_forward.output_dense.weight True
+encoder.layers.11.feed_forward.output_dense.bias True
+encoder.layers.11.final_layer_norm.weight True
+encoder.layers.11.final_layer_norm.bias True
 Total number of model parameters is 94402472
 EPOCH 1:
 isNotFrozen  True
-  batch 50 loss: 11.63573112487793
-  batch 100 loss: 8.350868520736695
-  batch 150 loss: 4.429625029563904
-  batch 200 loss: 3.5718225717544554
-  batch 250 loss: 3.414819974899292
-  batch 300 loss: 3.3471338987350463
-  batch 350 loss: 3.3138409566879274
-  batch 400 loss: 3.3033101558685303
-  batch 450 loss: 3.265930871963501
-  batch 500 loss: 3.22081666469574
-  batch 550 loss: 3.163437943458557
-  batch 600 loss: 3.114263696670532
-  batch 650 loss: 2.9777716064453124
-  batch 700 loss: 2.839421858787537
-  batch 750 loss: 2.605041651725769
-  batch 800 loss: 2.3318142080307007
-  batch 850 loss: 1.9733420872688294
-  batch 900 loss: 1.6417159867286681
-last epoch eta,  4.5851281589913054e-05
-LOSS train 1.64172 valid 1.20677, valid PER 31.97%
+  batch 50 loss: 7.771836457252502
+  batch 100 loss: 3.4161003923416136
+  batch 150 loss: 3.3243500804901123
+  batch 200 loss: 3.293624701499939
+  batch 250 loss: 3.14543484210968
+  batch 300 loss: 2.4585801267623903
+  batch 350 loss: 1.553758714199066
+  batch 400 loss: 1.0760005712509155
+  batch 450 loss: 0.8715377378463746
+  batch 500 loss: 0.8119245606660843
+  batch 550 loss: 1.0712709987163545
+  batch 600 loss: 0.713030806183815
+  batch 650 loss: 0.6305953246355057
+  batch 700 loss: 0.7105408918857574
+  batch 750 loss: 0.6039726781845093
+  batch 800 loss: 0.6532055032253266
+  batch 850 loss: 0.621666442155838
+  batch 900 loss: 0.5718387514352798
+last epoch eta,  0.00014601198858891113
+step count :0, len etas: 924
+LOSS train 0.57184 valid 0.36835, valid PER 10.81%
 EPOCH 2:
 isNotFrozen  True
-  batch 50 loss: 1.2017300641536712
-  batch 100 loss: 0.9718685340881348
-  batch 150 loss: 0.8062275242805481
-  batch 200 loss: 0.7397471404075623
-  batch 250 loss: 0.6905986511707306
-  batch 300 loss: 0.6213822931051254
-  batch 350 loss: 0.5962299925088882
-  batch 400 loss: 0.5711181485652923
-  batch 450 loss: 0.5086655759811402
-  batch 500 loss: 0.549898282289505
-  batch 550 loss: 0.5689808052778244
-  batch 600 loss: 0.5036372947692871
-  batch 650 loss: 0.5044321006536484
-  batch 700 loss: 0.511196704506874
-  batch 750 loss: 0.5110640034079552
-  batch 800 loss: 0.4711807072162628
-  batch 850 loss: 0.5029117202758789
-  batch 900 loss: 0.4686058658361435
-last epoch eta,  9.170256317982611e-05
-LOSS train 0.46861 valid 0.35109, valid PER 9.91%
+  batch 50 loss: 0.5131013244390488
+  batch 100 loss: 0.5307566648721695
+  batch 150 loss: 0.5428279709815979
+  batch 200 loss: 0.5393146485090256
+  batch 250 loss: 0.4899724289774895
+  batch 300 loss: 0.4884623011946678
+  batch 350 loss: 0.48875981152057646
+  batch 400 loss: 0.46565492421388627
+  batch 450 loss: 0.45312122970819474
+  batch 500 loss: 0.4412415471673012
+  batch 550 loss: 0.458721427321434
+  batch 600 loss: 0.4471708697080612
+  batch 650 loss: 0.46685316175222397
+  batch 700 loss: 0.4391656142473221
+  batch 750 loss: 0.4450326651334763
+  batch 800 loss: 0.40616139203310014
+  batch 850 loss: 0.4716887551546097
+  batch 900 loss: 0.4735741183161736
+last epoch eta,  0.00010324606726575184
+step count :0, len etas: 1848
+LOSS train 0.47357 valid 0.31487, valid PER 9.84%
 EPOCH 3:
 isNotFrozen  True
-  batch 50 loss: 0.4387577646970749
-  batch 100 loss: 0.4433205366134644
-  batch 150 loss: 0.4288346463441849
-  batch 200 loss: 0.4250921025872231
-  batch 250 loss: 0.4495254594087601
-  batch 300 loss: 0.44670227736234663
-  batch 350 loss: 0.46575092792510986
-  batch 400 loss: 0.4250921005010605
-  batch 450 loss: 0.4217454731464386
-  batch 500 loss: 0.4724435955286026
-  batch 550 loss: 0.4603814661502838
-  batch 600 loss: 0.39004586219787596
-  batch 650 loss: 0.39050276935100553
-  batch 700 loss: 0.43178248405456543
-  batch 750 loss: 0.44601729601621626
-  batch 800 loss: 0.39263969630002976
-  batch 850 loss: 0.4190192928910255
-  batch 900 loss: 0.37937226265668866
+  batch 50 loss: 0.3630749809741974
+  batch 100 loss: 0.3507751914858818
+  batch 150 loss: 0.3370742413401604
+  batch 200 loss: 0.4028663551807404
+  batch 250 loss: 0.40227440804243086
+  batch 300 loss: 0.3474763870239258
+  batch 350 loss: 0.3997974845767021
+  batch 400 loss: 0.3228457835316658
+  batch 450 loss: 0.3627173322439194
+  batch 500 loss: 0.35125242471694945
+  batch 550 loss: 0.3576055157184601
+  batch 600 loss: 0.33717974662780764
+  batch 650 loss: 0.3429907864332199
+  batch 700 loss: 0.34750062227249146
+  batch 750 loss: 0.3426161018013954
+  batch 800 loss: 0.3499179121851921
+  batch 850 loss: 0.3574254581332207
+  batch 900 loss: 0.3321723255515099
 last epoch eta,  8.43000609167204e-05
-LOSS train 0.37937 valid 0.31269, valid PER 9.43%
+step count :0, len etas: 2772
+LOSS train 0.33217 valid 0.30588, valid PER 8.93%
 EPOCH 4:
 isNotFrozen  True
-  batch 50 loss: 0.3763379034399986
-  batch 100 loss: 0.38054971903562546
-  batch 150 loss: 0.33687309205532073
-  batch 200 loss: 0.34771606743335726
-  batch 250 loss: 0.340781002342701
-  batch 300 loss: 0.3405827933549881
-  batch 350 loss: 0.3334075021743774
-  batch 400 loss: 0.3773292005062103
-  batch 450 loss: 0.33688866764307024
-  batch 500 loss: 0.3382572245597839
-  batch 550 loss: 0.3592159488797188
-  batch 600 loss: 0.3567456325888634
-  batch 650 loss: 0.31546453446149825
-  batch 700 loss: 0.3339565870165825
-  batch 750 loss: 0.32796337515115737
-  batch 800 loss: 0.32801390916109086
-  batch 850 loss: 0.34584675371646884
-  batch 900 loss: 0.3497106483578682
+  batch 50 loss: 0.3063717070221901
+  batch 100 loss: 0.30202213108539583
+  batch 150 loss: 0.288664667904377
+  batch 200 loss: 0.31342312395572663
+  batch 250 loss: 0.2900103238224983
+  batch 300 loss: 0.29314417719841
+  batch 350 loss: 0.29857515573501586
+  batch 400 loss: 0.29489281177520754
+  batch 450 loss: 0.3046532392501831
+  batch 500 loss: 0.3019492915272713
+  batch 550 loss: 0.30679802924394606
+  batch 600 loss: 0.3016076582670212
+  batch 650 loss: 0.31830853581428525
+  batch 700 loss: 0.28689017608761785
+  batch 750 loss: 0.2987730842828751
+  batch 800 loss: 0.2958018927276134
+  batch 850 loss: 0.26842031106352804
+  batch 900 loss: 0.3005848357081413
 last epoch eta,  7.300599429445556e-05
-LOSS train 0.34971 valid 0.29102, valid PER 8.53%
+step count :0, len etas: 3696
+LOSS train 0.30058 valid 0.30107, valid PER 8.85%
 EPOCH 5:
 isNotFrozen  True
-  batch 50 loss: 0.2634077656269074
-  batch 100 loss: 0.28496209025382996
-  batch 150 loss: 0.3235486781597137
-  batch 200 loss: 0.28886468574404717
-  batch 250 loss: 0.29733850598335265
-  batch 300 loss: 0.3111009231209755
-  batch 350 loss: 0.2731875444948673
-  batch 400 loss: 0.28137446343898775
-  batch 450 loss: 0.3003490400314331
-  batch 500 loss: 0.3145060008764267
-  batch 550 loss: 0.2738843157887459
-  batch 600 loss: 0.2867516231536865
-  batch 650 loss: 0.29283877775073053
-  batch 700 loss: 0.3104530316591263
-  batch 750 loss: 0.276037919819355
-  batch 800 loss: 0.2842642942070961
-  batch 850 loss: 0.28470328271389006
-  batch 900 loss: 0.3023462963104248
+  batch 50 loss: 0.2519344457983971
+  batch 100 loss: 0.24362581297755243
+  batch 150 loss: 0.2757436496019363
+  batch 200 loss: 0.2405969361960888
+  batch 250 loss: 0.28010626047849657
+  batch 300 loss: 0.24571745663881303
+  batch 350 loss: 0.25400488168001173
+  batch 400 loss: 0.24774510741233827
+  batch 450 loss: 0.24594006732106208
+  batch 500 loss: 0.26898519694805145
+  batch 550 loss: 0.2664508721232414
+  batch 600 loss: 0.26809863686561586
+  batch 650 loss: 0.26961374580860137
+  batch 700 loss: 0.2767009100317955
+  batch 750 loss: 0.25256935000419617
+  batch 800 loss: 0.2722155302762985
+  batch 850 loss: 0.2608393809199333
+  batch 900 loss: 0.28149318739771845
 last epoch eta,  6.529854640294577e-05
-LOSS train 0.30235 valid 0.27413, valid PER 8.46%
+step count :0, len etas: 4620
+LOSS train 0.28149 valid 0.30829, valid PER 8.49%
 EPOCH 6:
 isNotFrozen  True
-  batch 50 loss: 0.24506793320178985
-  batch 100 loss: 0.23836999297142028
-  batch 150 loss: 0.2418324215710163
-  batch 200 loss: 0.25549677982926366
-  batch 250 loss: 0.2427324701845646
-  batch 300 loss: 0.2648631012439728
-  batch 350 loss: 0.24970363959670067
-  batch 400 loss: 0.23997337132692337
-  batch 450 loss: 0.24684685170650483
-  batch 500 loss: 0.2564446514844894
-  batch 550 loss: 0.23938076823949814
-  batch 600 loss: 0.25767575174570084
-  batch 650 loss: 0.24773205041885377
-  batch 700 loss: 0.26650699228048325
-  batch 750 loss: 0.277448992729187
-  batch 800 loss: 0.26472465217113494
-  batch 850 loss: 0.2604690772294998
-  batch 900 loss: 0.26007080733776095
+  batch 50 loss: 0.20674265623092652
+  batch 100 loss: 0.22216178938746453
+  batch 150 loss: 0.20322947517037393
+  batch 200 loss: 0.23709084063768388
+  batch 250 loss: 0.25622541800141335
+  batch 300 loss: 0.23941267699003219
+  batch 350 loss: 0.22726958379149437
+  batch 400 loss: 0.21333906039595604
+  batch 450 loss: 0.2178896874189377
+  batch 500 loss: 0.2392315174639225
+  batch 550 loss: 0.2074294990301132
+  batch 600 loss: 0.21534852609038352
+  batch 650 loss: 0.2354650741815567
+  batch 700 loss: 0.2239477126300335
+  batch 750 loss: 0.23412035882472992
+  batch 800 loss: 0.222586520165205
+  batch 850 loss: 0.21756156787276268
+  batch 900 loss: 0.22770218431949615
 last epoch eta,  5.9609144728652034e-05
-LOSS train 0.26007 valid 0.30468, valid PER 8.47%
+step count :0, len etas: 5544
+LOSS train 0.22770 valid 0.30835, valid PER 8.23%
 EPOCH 7:
 isNotFrozen  True
-  batch 50 loss: 0.21544989064335823
-  batch 100 loss: 0.23106517851352693
-  batch 150 loss: 0.22976068764925003
-  batch 200 loss: 0.22025764510035514
-  batch 250 loss: 0.21248461455106735
-  batch 300 loss: 0.22295196995139122
-  batch 350 loss: 0.23330361947417258
-  batch 400 loss: 0.23539736568927766
-  batch 450 loss: 0.2173706153035164
-  batch 500 loss: 0.215108160674572
-  batch 550 loss: 0.21593910604715347
-  batch 600 loss: 0.22342582836747168
-  batch 650 loss: 0.2327701587975025
-  batch 700 loss: 0.22795192927122115
-  batch 750 loss: 0.2094641862809658
-  batch 800 loss: 0.2395402731001377
-  batch 850 loss: 0.224139247238636
-  batch 900 loss: 0.2243664325773716
+  batch 50 loss: 0.21144828483462333
+  batch 100 loss: 0.20299309432506563
+  batch 150 loss: 0.17498557657003402
+  batch 200 loss: 0.1964149709045887
+  batch 250 loss: 0.19202877715229988
+  batch 300 loss: 0.19846874892711638
+  batch 350 loss: 0.19771332204341888
+  batch 400 loss: 0.19701603725552558
+  batch 450 loss: 0.20561620831489563
+  batch 500 loss: 0.21349110767245294
+  batch 550 loss: 0.20178634583950042
+  batch 600 loss: 0.19202250093221665
+  batch 650 loss: 0.20843231812119484
+  batch 700 loss: 0.22223275020718575
+  batch 750 loss: 0.18862442083656789
+  batch 800 loss: 0.20642323181033134
+  batch 850 loss: 0.1872456230223179
+  batch 900 loss: 0.20374188527464868
 last epoch eta,  5.518734432003709e-05
-LOSS train 0.22437 valid 0.28145, valid PER 8.43%
+step count :0, len etas: 6468
+LOSS train 0.20374 valid 0.31298, valid PER 8.55%
 EPOCH 8:
 isNotFrozen  True
-  batch 50 loss: 0.1731062676012516
-  batch 100 loss: 0.20419211447238922
-  batch 150 loss: 0.19375178694725037
-  batch 200 loss: 0.18875779427587985
-  batch 250 loss: 0.18806515038013458
-  batch 300 loss: 0.19066050723195077
-  batch 350 loss: 0.20243717327713967
-  batch 400 loss: 0.19583878189325332
-  batch 450 loss: 0.2038528084754944
-  batch 500 loss: 0.20519219413399697
-  batch 550 loss: 0.20603789195418357
-  batch 600 loss: 0.20015828371047972
-  batch 650 loss: 0.20016444236040115
-  batch 700 loss: 0.20001789614558219
-  batch 750 loss: 0.19935168370604514
-  batch 800 loss: 0.20619701102375984
-  batch 850 loss: 0.20304476618766784
-  batch 900 loss: 0.21392841666936874
+  batch 50 loss: 0.1787358243763447
+  batch 100 loss: 0.18778054356575014
+  batch 150 loss: 0.19503426909446717
+  batch 200 loss: 0.16648480378091335
+  batch 250 loss: 0.1952315928041935
+  batch 300 loss: 0.17051309742033482
+  batch 350 loss: 0.16583941414952277
+  batch 400 loss: 0.18144338101148605
+  batch 450 loss: 0.18224733881652355
+  batch 500 loss: 0.187259973436594
+  batch 550 loss: 0.1598595305532217
+  batch 600 loss: 0.20187930688261985
+  batch 650 loss: 0.179596386551857
+  batch 700 loss: 0.19754645988345146
+  batch 750 loss: 0.17962421901524067
+  batch 800 loss: 0.18034668818116187
+  batch 850 loss: 0.1757130092382431
+  batch 900 loss: 0.1991276752948761
 last epoch eta,  5.162303363287592e-05
-LOSS train 0.21393 valid 0.29605, valid PER 8.52%
+step count :0, len etas: 7392
+LOSS train 0.19913 valid 0.31897, valid PER 8.19%
 EPOCH 9:
 isNotFrozen  True
-  batch 50 loss: 0.19284659065306187
-  batch 100 loss: 0.18792628422379493
-  batch 150 loss: 0.18087643899023534
-  batch 200 loss: 0.1932605142146349
-  batch 250 loss: 0.18622903659939766
-  batch 300 loss: 0.17901593163609505
-  batch 350 loss: 0.1924468320608139
-  batch 400 loss: 0.17258333623409272
-  batch 450 loss: 0.17761623874306678
-  batch 500 loss: 0.17392787143588065
-  batch 550 loss: 0.19776459485292436
-  batch 600 loss: 0.19181808203458786
-  batch 650 loss: 0.18559747397899629
-  batch 700 loss: 0.18048084288835525
-  batch 750 loss: 0.1828571528196335
-  batch 800 loss: 0.18557893007993698
-  batch 850 loss: 0.1810575780272484
-  batch 900 loss: 0.16134518325328828
+  batch 50 loss: 0.15378069296479224
+  batch 100 loss: 0.14534158900380134
+  batch 150 loss: 0.14340397372841834
+  batch 200 loss: 0.14879364408552648
+  batch 250 loss: 0.17513945817947388
+  batch 300 loss: 0.15744061455130576
+  batch 350 loss: 0.1617469933629036
+  batch 400 loss: 0.16603688828647137
+  batch 450 loss: 0.1678374359756708
+  batch 500 loss: 0.1623961105197668
+  batch 550 loss: 0.1710948034375906
+  batch 600 loss: 0.17698359742760658
+  batch 650 loss: 0.17623572304844856
+  batch 700 loss: 0.16129413455724717
+  batch 750 loss: 0.16244499549269675
+  batch 800 loss: 0.17080313205718994
+  batch 850 loss: 0.18111755535006524
+  batch 900 loss: 0.16693202137947083
 last epoch eta,  4.8670662862970364e-05
-LOSS train 0.16135 valid 0.31541, valid PER 8.39%
+step count :0, len etas: 8316
+LOSS train 0.16693 valid 0.34216, valid PER 8.38%
 EPOCH 10:
 isNotFrozen  True
-  batch 50 loss: 0.16316416040062903
-  batch 100 loss: 0.1560239592939615
-  batch 150 loss: 0.1662433071434498
-  batch 200 loss: 0.1536077618598938
-  batch 250 loss: 0.1663802121579647
-  batch 300 loss: 0.17920756042003633
-  batch 350 loss: 0.15209758915007116
-  batch 400 loss: 0.15547971293330193
-  batch 450 loss: 0.16105016134679317
-  batch 500 loss: 0.16771437719464302
-  batch 550 loss: 0.16488687679171563
-  batch 600 loss: 0.15544820107519627
-  batch 650 loss: 0.16120170876383783
-  batch 700 loss: 0.15725796937942504
-  batch 750 loss: 0.15216278418898582
-  batch 800 loss: 0.17942765705287456
-  batch 850 loss: 0.17598036035895348
-  batch 900 loss: 0.15544673144817353
+  batch 50 loss: 0.1393433603644371
+  batch 100 loss: 0.15096140757203103
+  batch 150 loss: 0.16040453933179377
+  batch 200 loss: 0.1434132842719555
+  batch 250 loss: 0.15127570256590844
+  batch 300 loss: 0.14643214613199235
+  batch 350 loss: 0.1467847838252783
+  batch 400 loss: 0.14473282150924205
+  batch 450 loss: 0.14030465722084046
+  batch 500 loss: 0.1659944958984852
+  batch 550 loss: 0.16767306461930276
+  batch 600 loss: 0.15130062520503998
+  batch 650 loss: 0.14609689630568026
+  batch 700 loss: 0.146278228610754
+  batch 750 loss: 0.1360933055728674
+  batch 800 loss: 0.14887693963944912
+  batch 850 loss: 0.14672102987766267
+  batch 900 loss: 0.14686205498874189
 last epoch eta,  4.617304496314739e-05
-LOSS train 0.15545 valid 0.31002, valid PER 8.02%
-Training finished in 14.0 minutes.
-Model saved to checkpoints/20240207_174533/model_5
-Loading model from checkpoints/20240207_174533/model_5
+step count :0, len etas: 9240
+LOSS train 0.14686 valid 0.35146, valid PER 8.43%
+Training finished in 15.0 minutes.
+Model saved to checkpoints/20240211_153134/model_4
+Loading model from checkpoints/20240211_153134/model_4
 CLEAN
- SUB: 5.51%, DEL: 2.28%, INS: 2.39%, COR: 92.21%, PER: 10.18%
+ SUB: 5.62%, DEL: 2.57%, INS: 1.84%, COR: 91.81%, PER: 10.02%
 
