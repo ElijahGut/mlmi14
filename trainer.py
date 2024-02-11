@@ -99,6 +99,7 @@ def train(model, args):
 
             if args.optimiser == 'noam':
                 optimiser.step_and_update_lr()
+                etas.append(optimiser.param_groups[0]['lr'])
             else:
                 optimiser.step()
 
@@ -124,8 +125,8 @@ def train(model, args):
         if args.warmup and epoch == 0:
             print(f'first 5 warmup etas, {warmup_etas[0:5]}, last 5 warmup etas, {warmup_etas[-5:]}')
 
-        if args.optimiser == 'noam':
-            etas.append(optimiser._optimiser.param_groups[0]['lr'])
+        # if args.optimiser == 'noam':
+        #     etas.append(optimiser._optimiser.param_groups[0]['lr'])
         return last_loss
 
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
