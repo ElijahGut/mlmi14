@@ -30,7 +30,7 @@ def train(model, args):
         optimiser = SGD(model.parameters(), lr=args.lr)
     elif args.optimiser == 'noam':
         adam = Adam(model.parameters(), betas=(0.9, 0.98), eps=1e-09, lr=0.123)
-        optimiser = Noam(adam, 0.123, 768, 2000)
+        optimiser = Noam(adam, 0.123, 768, 400)
     else:
         optimiser = Adam(model.parameters(), lr=args.lr)
 
