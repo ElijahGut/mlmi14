@@ -99,7 +99,7 @@ def train(model, args):
 
             if args.optimiser == 'noam':
                 optimiser.step_and_update_lr()
-                etas.append(optimiser.param_groups[0]['lr'])
+                etas.append(optimiser._optimiser.param_groups[0]['lr'])
             else:
                 optimiser.step()
 
