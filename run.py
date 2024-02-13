@@ -34,6 +34,7 @@ parser.add_argument('--freeze-layers', type=int, default=0, help="The number of 
 parser.add_argument('--inter-rep', type=int, default=0, help="The transformer layer whose representation we want to directly send to the output layer")
 parser.add_argument('--combine-reps', action="store_true", help="Combine representations?")
 parser.add_argument('--warmup', action="store_true", help="Use warmup?")
+parser.add_argument('--first-milestone', type=float, default=0.5, help="Fraction of epochs to mark as first milestone")
 
 args = parser.parse_args()
 
@@ -54,6 +55,7 @@ args.vocab = vocab
 
 if args.model == "wav2vec2":
     model = models.Wav2Vec2CTC(len(args.vocab), args.freeze_layers, args.inter_rep, args.combine_reps)
+    model = torch.compile(model)
 else:
     model = models.BiLSTM(args.num_layers, args.fbank_dims * args.concat, args.model_dims, len(args.vocab))
 

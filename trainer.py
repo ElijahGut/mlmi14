@@ -38,7 +38,7 @@ def train(model, args):
     if args.schedule_lr:
         print('TRAIN LOADER LENGTH/NUMBER OF STEPS, ', len(train_loader))
         total_steps = len(train_loader)*args.num_epochs
-        first_milestone = 0.4*total_steps if args.warmup else 0.5*total_steps
+        first_milestone = 0.4*total_steps if args.warmup else args.first_milestone*total_steps
         second_milestone = total_steps - first_milestone
         constant_sched = ConstantLR(optimiser, factor=1, total_iters=first_milestone)
         decay_sched = LinearLR(optimiser, start_factor=1, end_factor=0, total_iters=second_milestone)

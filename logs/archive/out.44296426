@@ -1,0 +1,664 @@
+Namespace(seed=123, train_json='data/train.json', val_json='data/dev.json', test_json='data/test.json', batch_size=4, num_layers=1, fbank_dims=23, model_dims=128, concat=3, lr=0.0001, vocab='data/vocab.txt', use_fbank=False, model='wav2vec2', report_interval=50, num_epochs=10, optimiser='adam', schedule_lr=True, freeze_layers=-1, inter_rep=0, combine_reps=False, warmup=False, first_milestone=0.9)
+FROZEN LAYERS: 
+masked_spec_embed False
+feature_extractor.conv_layers.0.conv.weight False
+feature_extractor.conv_layers.0.layer_norm.weight False
+feature_extractor.conv_layers.0.layer_norm.bias False
+feature_extractor.conv_layers.1.conv.weight False
+feature_extractor.conv_layers.2.conv.weight False
+feature_extractor.conv_layers.3.conv.weight False
+feature_extractor.conv_layers.4.conv.weight False
+feature_extractor.conv_layers.5.conv.weight False
+feature_extractor.conv_layers.6.conv.weight False
+feature_projection.layer_norm.weight False
+feature_projection.layer_norm.bias False
+feature_projection.projection.weight False
+feature_projection.projection.bias False
+encoder.pos_conv_embed.conv.bias False
+encoder.pos_conv_embed.conv.weight_g False
+encoder.pos_conv_embed.conv.weight_v False
+encoder.layer_norm.weight False
+encoder.layer_norm.bias False
+encoder.layers.0.attention.k_proj.weight False
+encoder.layers.0.attention.k_proj.bias False
+encoder.layers.0.attention.v_proj.weight False
+encoder.layers.0.attention.v_proj.bias False
+encoder.layers.0.attention.q_proj.weight False
+encoder.layers.0.attention.q_proj.bias False
+encoder.layers.0.attention.out_proj.weight False
+encoder.layers.0.attention.out_proj.bias False
+encoder.layers.0.layer_norm.weight False
+encoder.layers.0.layer_norm.bias False
+encoder.layers.0.feed_forward.intermediate_dense.weight False
+encoder.layers.0.feed_forward.intermediate_dense.bias False
+encoder.layers.0.feed_forward.output_dense.weight False
+encoder.layers.0.feed_forward.output_dense.bias False
+encoder.layers.0.final_layer_norm.weight False
+encoder.layers.0.final_layer_norm.bias False
+encoder.layers.1.attention.k_proj.weight False
+encoder.layers.1.attention.k_proj.bias False
+encoder.layers.1.attention.v_proj.weight False
+encoder.layers.1.attention.v_proj.bias False
+encoder.layers.1.attention.q_proj.weight False
+encoder.layers.1.attention.q_proj.bias False
+encoder.layers.1.attention.out_proj.weight False
+encoder.layers.1.attention.out_proj.bias False
+encoder.layers.1.layer_norm.weight False
+encoder.layers.1.layer_norm.bias False
+encoder.layers.1.feed_forward.intermediate_dense.weight False
+encoder.layers.1.feed_forward.intermediate_dense.bias False
+encoder.layers.1.feed_forward.output_dense.weight False
+encoder.layers.1.feed_forward.output_dense.bias False
+encoder.layers.1.final_layer_norm.weight False
+encoder.layers.1.final_layer_norm.bias False
+encoder.layers.2.attention.k_proj.weight False
+encoder.layers.2.attention.k_proj.bias False
+encoder.layers.2.attention.v_proj.weight False
+encoder.layers.2.attention.v_proj.bias False
+encoder.layers.2.attention.q_proj.weight False
+encoder.layers.2.attention.q_proj.bias False
+encoder.layers.2.attention.out_proj.weight False
+encoder.layers.2.attention.out_proj.bias False
+encoder.layers.2.layer_norm.weight False
+encoder.layers.2.layer_norm.bias False
+encoder.layers.2.feed_forward.intermediate_dense.weight False
+encoder.layers.2.feed_forward.intermediate_dense.bias False
+encoder.layers.2.feed_forward.output_dense.weight False
+encoder.layers.2.feed_forward.output_dense.bias False
+encoder.layers.2.final_layer_norm.weight False
+encoder.layers.2.final_layer_norm.bias False
+encoder.layers.3.attention.k_proj.weight False
+encoder.layers.3.attention.k_proj.bias False
+encoder.layers.3.attention.v_proj.weight False
+encoder.layers.3.attention.v_proj.bias False
+encoder.layers.3.attention.q_proj.weight False
+encoder.layers.3.attention.q_proj.bias False
+encoder.layers.3.attention.out_proj.weight False
+encoder.layers.3.attention.out_proj.bias False
+encoder.layers.3.layer_norm.weight False
+encoder.layers.3.layer_norm.bias False
+encoder.layers.3.feed_forward.intermediate_dense.weight False
+encoder.layers.3.feed_forward.intermediate_dense.bias False
+encoder.layers.3.feed_forward.output_dense.weight False
+encoder.layers.3.feed_forward.output_dense.bias False
+encoder.layers.3.final_layer_norm.weight False
+encoder.layers.3.final_layer_norm.bias False
+encoder.layers.4.attention.k_proj.weight False
+encoder.layers.4.attention.k_proj.bias False
+encoder.layers.4.attention.v_proj.weight False
+encoder.layers.4.attention.v_proj.bias False
+encoder.layers.4.attention.q_proj.weight False
+encoder.layers.4.attention.q_proj.bias False
+encoder.layers.4.attention.out_proj.weight False
+encoder.layers.4.attention.out_proj.bias False
+encoder.layers.4.layer_norm.weight False
+encoder.layers.4.layer_norm.bias False
+encoder.layers.4.feed_forward.intermediate_dense.weight False
+encoder.layers.4.feed_forward.intermediate_dense.bias False
+encoder.layers.4.feed_forward.output_dense.weight False
+encoder.layers.4.feed_forward.output_dense.bias False
+encoder.layers.4.final_layer_norm.weight False
+encoder.layers.4.final_layer_norm.bias False
+encoder.layers.5.attention.k_proj.weight False
+encoder.layers.5.attention.k_proj.bias False
+encoder.layers.5.attention.v_proj.weight False
+encoder.layers.5.attention.v_proj.bias False
+encoder.layers.5.attention.q_proj.weight False
+encoder.layers.5.attention.q_proj.bias False
+encoder.layers.5.attention.out_proj.weight False
+encoder.layers.5.attention.out_proj.bias False
+encoder.layers.5.layer_norm.weight False
+encoder.layers.5.layer_norm.bias False
+encoder.layers.5.feed_forward.intermediate_dense.weight False
+encoder.layers.5.feed_forward.intermediate_dense.bias False
+encoder.layers.5.feed_forward.output_dense.weight False
+encoder.layers.5.feed_forward.output_dense.bias False
+encoder.layers.5.final_layer_norm.weight False
+encoder.layers.5.final_layer_norm.bias False
+encoder.layers.6.attention.k_proj.weight False
+encoder.layers.6.attention.k_proj.bias False
+encoder.layers.6.attention.v_proj.weight False
+encoder.layers.6.attention.v_proj.bias False
+encoder.layers.6.attention.q_proj.weight False
+encoder.layers.6.attention.q_proj.bias False
+encoder.layers.6.attention.out_proj.weight False
+encoder.layers.6.attention.out_proj.bias False
+encoder.layers.6.layer_norm.weight False
+encoder.layers.6.layer_norm.bias False
+encoder.layers.6.feed_forward.intermediate_dense.weight False
+encoder.layers.6.feed_forward.intermediate_dense.bias False
+encoder.layers.6.feed_forward.output_dense.weight False
+encoder.layers.6.feed_forward.output_dense.bias False
+encoder.layers.6.final_layer_norm.weight False
+encoder.layers.6.final_layer_norm.bias False
+encoder.layers.7.attention.k_proj.weight False
+encoder.layers.7.attention.k_proj.bias False
+encoder.layers.7.attention.v_proj.weight False
+encoder.layers.7.attention.v_proj.bias False
+encoder.layers.7.attention.q_proj.weight False
+encoder.layers.7.attention.q_proj.bias False
+encoder.layers.7.attention.out_proj.weight False
+encoder.layers.7.attention.out_proj.bias False
+encoder.layers.7.layer_norm.weight False
+encoder.layers.7.layer_norm.bias False
+encoder.layers.7.feed_forward.intermediate_dense.weight False
+encoder.layers.7.feed_forward.intermediate_dense.bias False
+encoder.layers.7.feed_forward.output_dense.weight False
+encoder.layers.7.feed_forward.output_dense.bias False
+encoder.layers.7.final_layer_norm.weight False
+encoder.layers.7.final_layer_norm.bias False
+encoder.layers.8.attention.k_proj.weight False
+encoder.layers.8.attention.k_proj.bias False
+encoder.layers.8.attention.v_proj.weight False
+encoder.layers.8.attention.v_proj.bias False
+encoder.layers.8.attention.q_proj.weight False
+encoder.layers.8.attention.q_proj.bias False
+encoder.layers.8.attention.out_proj.weight False
+encoder.layers.8.attention.out_proj.bias False
+encoder.layers.8.layer_norm.weight False
+encoder.layers.8.layer_norm.bias False
+encoder.layers.8.feed_forward.intermediate_dense.weight False
+encoder.layers.8.feed_forward.intermediate_dense.bias False
+encoder.layers.8.feed_forward.output_dense.weight False
+encoder.layers.8.feed_forward.output_dense.bias False
+encoder.layers.8.final_layer_norm.weight False
+encoder.layers.8.final_layer_norm.bias False
+encoder.layers.9.attention.k_proj.weight False
+encoder.layers.9.attention.k_proj.bias False
+encoder.layers.9.attention.v_proj.weight False
+encoder.layers.9.attention.v_proj.bias False
+encoder.layers.9.attention.q_proj.weight False
+encoder.layers.9.attention.q_proj.bias False
+encoder.layers.9.attention.out_proj.weight False
+encoder.layers.9.attention.out_proj.bias False
+encoder.layers.9.layer_norm.weight False
+encoder.layers.9.layer_norm.bias False
+encoder.layers.9.feed_forward.intermediate_dense.weight False
+encoder.layers.9.feed_forward.intermediate_dense.bias False
+encoder.layers.9.feed_forward.output_dense.weight False
+encoder.layers.9.feed_forward.output_dense.bias False
+encoder.layers.9.final_layer_norm.weight False
+encoder.layers.9.final_layer_norm.bias False
+encoder.layers.10.attention.k_proj.weight False
+encoder.layers.10.attention.k_proj.bias False
+encoder.layers.10.attention.v_proj.weight False
+encoder.layers.10.attention.v_proj.bias False
+encoder.layers.10.attention.q_proj.weight False
+encoder.layers.10.attention.q_proj.bias False
+encoder.layers.10.attention.out_proj.weight False
+encoder.layers.10.attention.out_proj.bias False
+encoder.layers.10.layer_norm.weight False
+encoder.layers.10.layer_norm.bias False
+encoder.layers.10.feed_forward.intermediate_dense.weight False
+encoder.layers.10.feed_forward.intermediate_dense.bias False
+encoder.layers.10.feed_forward.output_dense.weight False
+encoder.layers.10.feed_forward.output_dense.bias False
+encoder.layers.10.final_layer_norm.weight False
+encoder.layers.10.final_layer_norm.bias False
+encoder.layers.11.attention.k_proj.weight False
+encoder.layers.11.attention.k_proj.bias False
+encoder.layers.11.attention.v_proj.weight False
+encoder.layers.11.attention.v_proj.bias False
+encoder.layers.11.attention.q_proj.weight False
+encoder.layers.11.attention.q_proj.bias False
+encoder.layers.11.attention.out_proj.weight False
+encoder.layers.11.attention.out_proj.bias False
+encoder.layers.11.layer_norm.weight False
+encoder.layers.11.layer_norm.bias False
+encoder.layers.11.feed_forward.intermediate_dense.weight False
+encoder.layers.11.feed_forward.intermediate_dense.bias False
+encoder.layers.11.feed_forward.output_dense.weight False
+encoder.layers.11.feed_forward.output_dense.bias False
+encoder.layers.11.final_layer_norm.weight False
+encoder.layers.11.final_layer_norm.bias False
+Total number of model parameters is 94402472
+TRAIN LOADER LENGTH/NUMBER OF STEPS,  924
+total_steps 9240, first_milestone 8316.0, second_milestone 924.0
+EPOCH 1:
+isNotFrozen  False
+  batch 50 loss: 10.782636108398437
+  batch 100 loss: 8.377838115692139
+  batch 150 loss: 6.3690423583984375
+  batch 200 loss: 4.875386066436768
+  batch 250 loss: 4.1259261512756344
+  batch 300 loss: 3.7965867042541506
+  batch 350 loss: 3.6139859437942503
+  batch 400 loss: 3.504179334640503
+  batch 450 loss: 3.426761894226074
+  batch 500 loss: 3.4011465072631837
+  batch 550 loss: 3.3601980686187742
+  batch 600 loss: 3.3358084535598755
+  batch 650 loss: 3.3325271081924437
+  batch 700 loss: 3.3439449882507324
+  batch 750 loss: 3.293137149810791
+  batch 800 loss: 3.2856254625320434
+  batch 850 loss: 3.3002142000198362
+  batch 900 loss: 3.2711411142349243
+last epoch eta,  [0.0001]
+step count :924, len etas: 924
+LOSS train 3.27114 valid 3.46003, valid PER 99.97%
+EPOCH 2:
+isNotFrozen  False
+  batch 50 loss: 3.238550806045532
+  batch 100 loss: 3.241680212020874
+  batch 150 loss: 3.2487184238433837
+  batch 200 loss: 3.2121562719345094
+  batch 250 loss: 3.2287843513488768
+  batch 300 loss: 3.22074818611145
+  batch 350 loss: 3.203916697502136
+  batch 400 loss: 3.205840015411377
+  batch 450 loss: 3.176091375350952
+  batch 500 loss: 3.194873275756836
+  batch 550 loss: 3.1756687927246094
+  batch 600 loss: 3.1707995891571046
+  batch 650 loss: 3.164787278175354
+  batch 700 loss: 3.15156946182251
+  batch 750 loss: 3.1588327836990358
+  batch 800 loss: 3.1255849504470827
+  batch 850 loss: 3.1384789657592775
+  batch 900 loss: 3.1203271436691282
+last epoch eta,  [0.0001]
+step count :1848, len etas: 1848
+LOSS train 3.12033 valid 3.20892, valid PER 97.43%
+EPOCH 3:
+isNotFrozen  False
+  batch 50 loss: 3.100669598579407
+  batch 100 loss: 3.075995740890503
+  batch 150 loss: 3.080816750526428
+  batch 200 loss: 3.062198257446289
+  batch 250 loss: 3.020416941642761
+  batch 300 loss: 3.0385318422317504
+  batch 350 loss: 3.040129837989807
+  batch 400 loss: 2.9930438947677613
+  batch 450 loss: 2.9981758880615232
+  batch 500 loss: 2.955571970939636
+  batch 550 loss: 2.9487025785446166
+  batch 600 loss: 2.939419116973877
+  batch 650 loss: 2.889295048713684
+  batch 700 loss: 2.8794277477264405
+  batch 750 loss: 2.886767015457153
+  batch 800 loss: 2.863125371932983
+  batch 850 loss: 2.8437665033340456
+  batch 900 loss: 2.804694023132324
+last epoch eta,  [0.0001]
+step count :2772, len etas: 2772
+LOSS train 2.80469 valid 2.82040, valid PER 82.30%
+UNFROZEN LAYERS: 
+masked_spec_embed True
+feature_extractor.conv_layers.0.conv.weight False
+feature_extractor.conv_layers.0.layer_norm.weight False
+feature_extractor.conv_layers.0.layer_norm.bias False
+feature_extractor.conv_layers.1.conv.weight False
+feature_extractor.conv_layers.2.conv.weight False
+feature_extractor.conv_layers.3.conv.weight False
+feature_extractor.conv_layers.4.conv.weight False
+feature_extractor.conv_layers.5.conv.weight False
+feature_extractor.conv_layers.6.conv.weight False
+feature_projection.layer_norm.weight True
+feature_projection.layer_norm.bias True
+feature_projection.projection.weight True
+feature_projection.projection.bias True
+encoder.pos_conv_embed.conv.bias True
+encoder.pos_conv_embed.conv.weight_g True
+encoder.pos_conv_embed.conv.weight_v True
+encoder.layer_norm.weight True
+encoder.layer_norm.bias True
+encoder.layers.0.attention.k_proj.weight True
+encoder.layers.0.attention.k_proj.bias True
+encoder.layers.0.attention.v_proj.weight True
+encoder.layers.0.attention.v_proj.bias True
+encoder.layers.0.attention.q_proj.weight True
+encoder.layers.0.attention.q_proj.bias True
+encoder.layers.0.attention.out_proj.weight True
+encoder.layers.0.attention.out_proj.bias True
+encoder.layers.0.layer_norm.weight True
+encoder.layers.0.layer_norm.bias True
+encoder.layers.0.feed_forward.intermediate_dense.weight True
+encoder.layers.0.feed_forward.intermediate_dense.bias True
+encoder.layers.0.feed_forward.output_dense.weight True
+encoder.layers.0.feed_forward.output_dense.bias True
+encoder.layers.0.final_layer_norm.weight True
+encoder.layers.0.final_layer_norm.bias True
+encoder.layers.1.attention.k_proj.weight True
+encoder.layers.1.attention.k_proj.bias True
+encoder.layers.1.attention.v_proj.weight True
+encoder.layers.1.attention.v_proj.bias True
+encoder.layers.1.attention.q_proj.weight True
+encoder.layers.1.attention.q_proj.bias True
+encoder.layers.1.attention.out_proj.weight True
+encoder.layers.1.attention.out_proj.bias True
+encoder.layers.1.layer_norm.weight True
+encoder.layers.1.layer_norm.bias True
+encoder.layers.1.feed_forward.intermediate_dense.weight True
+encoder.layers.1.feed_forward.intermediate_dense.bias True
+encoder.layers.1.feed_forward.output_dense.weight True
+encoder.layers.1.feed_forward.output_dense.bias True
+encoder.layers.1.final_layer_norm.weight True
+encoder.layers.1.final_layer_norm.bias True
+encoder.layers.2.attention.k_proj.weight True
+encoder.layers.2.attention.k_proj.bias True
+encoder.layers.2.attention.v_proj.weight True
+encoder.layers.2.attention.v_proj.bias True
+encoder.layers.2.attention.q_proj.weight True
+encoder.layers.2.attention.q_proj.bias True
+encoder.layers.2.attention.out_proj.weight True
+encoder.layers.2.attention.out_proj.bias True
+encoder.layers.2.layer_norm.weight True
+encoder.layers.2.layer_norm.bias True
+encoder.layers.2.feed_forward.intermediate_dense.weight True
+encoder.layers.2.feed_forward.intermediate_dense.bias True
+encoder.layers.2.feed_forward.output_dense.weight True
+encoder.layers.2.feed_forward.output_dense.bias True
+encoder.layers.2.final_layer_norm.weight True
+encoder.layers.2.final_layer_norm.bias True
+encoder.layers.3.attention.k_proj.weight True
+encoder.layers.3.attention.k_proj.bias True
+encoder.layers.3.attention.v_proj.weight True
+encoder.layers.3.attention.v_proj.bias True
+encoder.layers.3.attention.q_proj.weight True
+encoder.layers.3.attention.q_proj.bias True
+encoder.layers.3.attention.out_proj.weight True
+encoder.layers.3.attention.out_proj.bias True
+encoder.layers.3.layer_norm.weight True
+encoder.layers.3.layer_norm.bias True
+encoder.layers.3.feed_forward.intermediate_dense.weight True
+encoder.layers.3.feed_forward.intermediate_dense.bias True
+encoder.layers.3.feed_forward.output_dense.weight True
+encoder.layers.3.feed_forward.output_dense.bias True
+encoder.layers.3.final_layer_norm.weight True
+encoder.layers.3.final_layer_norm.bias True
+encoder.layers.4.attention.k_proj.weight True
+encoder.layers.4.attention.k_proj.bias True
+encoder.layers.4.attention.v_proj.weight True
+encoder.layers.4.attention.v_proj.bias True
+encoder.layers.4.attention.q_proj.weight True
+encoder.layers.4.attention.q_proj.bias True
+encoder.layers.4.attention.out_proj.weight True
+encoder.layers.4.attention.out_proj.bias True
+encoder.layers.4.layer_norm.weight True
+encoder.layers.4.layer_norm.bias True
+encoder.layers.4.feed_forward.intermediate_dense.weight True
+encoder.layers.4.feed_forward.intermediate_dense.bias True
+encoder.layers.4.feed_forward.output_dense.weight True
+encoder.layers.4.feed_forward.output_dense.bias True
+encoder.layers.4.final_layer_norm.weight True
+encoder.layers.4.final_layer_norm.bias True
+encoder.layers.5.attention.k_proj.weight True
+encoder.layers.5.attention.k_proj.bias True
+encoder.layers.5.attention.v_proj.weight True
+encoder.layers.5.attention.v_proj.bias True
+encoder.layers.5.attention.q_proj.weight True
+encoder.layers.5.attention.q_proj.bias True
+encoder.layers.5.attention.out_proj.weight True
+encoder.layers.5.attention.out_proj.bias True
+encoder.layers.5.layer_norm.weight True
+encoder.layers.5.layer_norm.bias True
+encoder.layers.5.feed_forward.intermediate_dense.weight True
+encoder.layers.5.feed_forward.intermediate_dense.bias True
+encoder.layers.5.feed_forward.output_dense.weight True
+encoder.layers.5.feed_forward.output_dense.bias True
+encoder.layers.5.final_layer_norm.weight True
+encoder.layers.5.final_layer_norm.bias True
+encoder.layers.6.attention.k_proj.weight True
+encoder.layers.6.attention.k_proj.bias True
+encoder.layers.6.attention.v_proj.weight True
+encoder.layers.6.attention.v_proj.bias True
+encoder.layers.6.attention.q_proj.weight True
+encoder.layers.6.attention.q_proj.bias True
+encoder.layers.6.attention.out_proj.weight True
+encoder.layers.6.attention.out_proj.bias True
+encoder.layers.6.layer_norm.weight True
+encoder.layers.6.layer_norm.bias True
+encoder.layers.6.feed_forward.intermediate_dense.weight True
+encoder.layers.6.feed_forward.intermediate_dense.bias True
+encoder.layers.6.feed_forward.output_dense.weight True
+encoder.layers.6.feed_forward.output_dense.bias True
+encoder.layers.6.final_layer_norm.weight True
+encoder.layers.6.final_layer_norm.bias True
+encoder.layers.7.attention.k_proj.weight True
+encoder.layers.7.attention.k_proj.bias True
+encoder.layers.7.attention.v_proj.weight True
+encoder.layers.7.attention.v_proj.bias True
+encoder.layers.7.attention.q_proj.weight True
+encoder.layers.7.attention.q_proj.bias True
+encoder.layers.7.attention.out_proj.weight True
+encoder.layers.7.attention.out_proj.bias True
+encoder.layers.7.layer_norm.weight True
+encoder.layers.7.layer_norm.bias True
+encoder.layers.7.feed_forward.intermediate_dense.weight True
+encoder.layers.7.feed_forward.intermediate_dense.bias True
+encoder.layers.7.feed_forward.output_dense.weight True
+encoder.layers.7.feed_forward.output_dense.bias True
+encoder.layers.7.final_layer_norm.weight True
+encoder.layers.7.final_layer_norm.bias True
+encoder.layers.8.attention.k_proj.weight True
+encoder.layers.8.attention.k_proj.bias True
+encoder.layers.8.attention.v_proj.weight True
+encoder.layers.8.attention.v_proj.bias True
+encoder.layers.8.attention.q_proj.weight True
+encoder.layers.8.attention.q_proj.bias True
+encoder.layers.8.attention.out_proj.weight True
+encoder.layers.8.attention.out_proj.bias True
+encoder.layers.8.layer_norm.weight True
+encoder.layers.8.layer_norm.bias True
+encoder.layers.8.feed_forward.intermediate_dense.weight True
+encoder.layers.8.feed_forward.intermediate_dense.bias True
+encoder.layers.8.feed_forward.output_dense.weight True
+encoder.layers.8.feed_forward.output_dense.bias True
+encoder.layers.8.final_layer_norm.weight True
+encoder.layers.8.final_layer_norm.bias True
+encoder.layers.9.attention.k_proj.weight True
+encoder.layers.9.attention.k_proj.bias True
+encoder.layers.9.attention.v_proj.weight True
+encoder.layers.9.attention.v_proj.bias True
+encoder.layers.9.attention.q_proj.weight True
+encoder.layers.9.attention.q_proj.bias True
+encoder.layers.9.attention.out_proj.weight True
+encoder.layers.9.attention.out_proj.bias True
+encoder.layers.9.layer_norm.weight True
+encoder.layers.9.layer_norm.bias True
+encoder.layers.9.feed_forward.intermediate_dense.weight True
+encoder.layers.9.feed_forward.intermediate_dense.bias True
+encoder.layers.9.feed_forward.output_dense.weight True
+encoder.layers.9.feed_forward.output_dense.bias True
+encoder.layers.9.final_layer_norm.weight True
+encoder.layers.9.final_layer_norm.bias True
+encoder.layers.10.attention.k_proj.weight True
+encoder.layers.10.attention.k_proj.bias True
+encoder.layers.10.attention.v_proj.weight True
+encoder.layers.10.attention.v_proj.bias True
+encoder.layers.10.attention.q_proj.weight True
+encoder.layers.10.attention.q_proj.bias True
+encoder.layers.10.attention.out_proj.weight True
+encoder.layers.10.attention.out_proj.bias True
+encoder.layers.10.layer_norm.weight True
+encoder.layers.10.layer_norm.bias True
+encoder.layers.10.feed_forward.intermediate_dense.weight True
+encoder.layers.10.feed_forward.intermediate_dense.bias True
+encoder.layers.10.feed_forward.output_dense.weight True
+encoder.layers.10.feed_forward.output_dense.bias True
+encoder.layers.10.final_layer_norm.weight True
+encoder.layers.10.final_layer_norm.bias True
+encoder.layers.11.attention.k_proj.weight True
+encoder.layers.11.attention.k_proj.bias True
+encoder.layers.11.attention.v_proj.weight True
+encoder.layers.11.attention.v_proj.bias True
+encoder.layers.11.attention.q_proj.weight True
+encoder.layers.11.attention.q_proj.bias True
+encoder.layers.11.attention.out_proj.weight True
+encoder.layers.11.attention.out_proj.bias True
+encoder.layers.11.layer_norm.weight True
+encoder.layers.11.layer_norm.bias True
+encoder.layers.11.feed_forward.intermediate_dense.weight True
+encoder.layers.11.feed_forward.intermediate_dense.bias True
+encoder.layers.11.feed_forward.output_dense.weight True
+encoder.layers.11.feed_forward.output_dense.bias True
+encoder.layers.11.final_layer_norm.weight True
+encoder.layers.11.final_layer_norm.bias True
+EPOCH 4:
+isNotFrozen  True
+  batch 50 loss: 1.9334497261047363
+  batch 100 loss: 1.1040676105022431
+  batch 150 loss: 0.7288525265455246
+  batch 200 loss: 2.3605198395252227
+  batch 250 loss: 3.315581121444702
+  batch 300 loss: 3.3133833742141725
+  batch 350 loss: 3.286090989112854
+  batch 400 loss: 3.2986068153381347
+  batch 450 loss: 3.3115846252441408
+  batch 500 loss: 3.276316180229187
+  batch 550 loss: 3.3118743324279785
+  batch 600 loss: 3.3088607454299925
+  batch 650 loss: 3.305023775100708
+  batch 700 loss: 3.3047438526153563
+  batch 750 loss: 3.2818813610076902
+  batch 800 loss: 3.2869797992706298
+  batch 850 loss: 3.2818408823013305
+  batch 900 loss: 3.303235116004944
+last epoch eta,  [0.0001]
+step count :3696, len etas: 3696
+LOSS train 3.30324 valid 3.31730, valid PER 100.00%
+EPOCH 5:
+isNotFrozen  True
+  batch 50 loss: 3.2841415452957152
+  batch 100 loss: 3.288089509010315
+  batch 150 loss: 3.27691596031189
+  batch 200 loss: 3.2919223165512084
+  batch 250 loss: 3.2964473247528074
+  batch 300 loss: 3.290500283241272
+  batch 350 loss: 3.306066279411316
+  batch 400 loss: 3.301682543754578
+  batch 450 loss: 3.286621403694153
+  batch 500 loss: 3.306748700141907
+  batch 550 loss: 3.2932134103775024
+  batch 600 loss: 3.286088299751282
+  batch 650 loss: 3.2916728401184083
+  batch 700 loss: 3.3001649665832518
+  batch 750 loss: 3.2961433506011963
+  batch 800 loss: 3.3103054475784304
+  batch 850 loss: 3.3071095991134642
+  batch 900 loss: 3.3037172842025755
+last epoch eta,  [0.0001]
+step count :4620, len etas: 4620
+LOSS train 3.30372 valid 3.31637, valid PER 100.00%
+EPOCH 6:
+isNotFrozen  True
+  batch 50 loss: 3.280158381462097
+  batch 100 loss: 3.3088459634780882
+  batch 150 loss: 3.2900921535491943
+  batch 200 loss: 3.2991727781295777
+  batch 250 loss: 3.304276204109192
+  batch 300 loss: 3.2753413629531862
+  batch 350 loss: 3.29810875415802
+  batch 400 loss: 3.2875681591033934
+  batch 450 loss: 3.3018851184844973
+  batch 500 loss: 3.2846734523773193
+  batch 550 loss: 3.291634159088135
+  batch 600 loss: 3.2873963594436644
+  batch 650 loss: 3.3018791484832763
+  batch 700 loss: 3.3043891096115114
+  batch 750 loss: 3.300024428367615
+  batch 800 loss: 3.2883824825286867
+  batch 850 loss: 3.302802629470825
+  batch 900 loss: 3.3024516344070434
+last epoch eta,  [0.0001]
+step count :5544, len etas: 5544
+LOSS train 3.30245 valid 3.33707, valid PER 100.00%
+EPOCH 7:
+isNotFrozen  True
+  batch 50 loss: 3.2935830402374267
+  batch 100 loss: 3.306593255996704
+  batch 150 loss: 3.286881408691406
+  batch 200 loss: 3.2985841035842896
+  batch 250 loss: 3.2971665191650392
+  batch 300 loss: 3.2812023687362672
+  batch 350 loss: 3.287376503944397
+  batch 400 loss: 3.2886225414276122
+  batch 450 loss: 3.2885918521881106
+  batch 500 loss: 3.2827521657943723
+  batch 550 loss: 3.2998074865341187
+  batch 600 loss: 3.30145299911499
+  batch 650 loss: 3.290610032081604
+  batch 700 loss: 3.292410373687744
+  batch 750 loss: 3.284226803779602
+  batch 800 loss: 3.303727192878723
+  batch 850 loss: 3.2971075487136843
+  batch 900 loss: 3.3109548139572142
+last epoch eta,  [0.0001]
+step count :6468, len etas: 6468
+LOSS train 3.31095 valid 3.35000, valid PER 100.00%
+EPOCH 8:
+isNotFrozen  True
+  batch 50 loss: 3.293220558166504
+  batch 100 loss: 3.300274772644043
+  batch 150 loss: 3.28947075843811
+  batch 200 loss: 3.3006495666503906
+  batch 250 loss: 3.2902620887756346
+  batch 300 loss: 3.2861790752410887
+  batch 350 loss: 3.293120560646057
+  batch 400 loss: 3.2924403047561643
+  batch 450 loss: 3.2955966091156004
+  batch 500 loss: 3.2930577182769776
+  batch 550 loss: 3.2996425247192382
+  batch 600 loss: 3.2940225076675413
+  batch 650 loss: 3.2999805545806886
+  batch 700 loss: 3.2924675798416136
+  batch 750 loss: 3.2886305236816407
+  batch 800 loss: 3.290171208381653
+  batch 850 loss: 3.301938257217407
+  batch 900 loss: 3.2874729871749877
+last epoch eta,  [0.0001]
+step count :7392, len etas: 7392
+LOSS train 3.28747 valid 3.32273, valid PER 100.00%
+EPOCH 9:
+isNotFrozen  True
+  batch 50 loss: 3.2855927610397337
+  batch 100 loss: 3.297994542121887
+  batch 150 loss: 3.284286913871765
+  batch 200 loss: 3.293544611930847
+  batch 250 loss: 3.2807150411605837
+  batch 300 loss: 3.299036145210266
+  batch 350 loss: 3.2940116691589356
+  batch 400 loss: 3.2998680448532105
+  batch 450 loss: 3.2999959897994997
+  batch 500 loss: 3.2823510360717774
+  batch 550 loss: 3.2812312841415405
+  batch 600 loss: 3.2922724723815917
+  batch 650 loss: 3.2746334981918337
+  batch 700 loss: 3.316323003768921
+  batch 750 loss: 3.303330669403076
+  batch 800 loss: 3.2956125640869143
+  batch 850 loss: 3.2916113901138306
+  batch 900 loss: 3.299867844581604
+last epoch eta,  [0.0001]
+step count :8316, len etas: 8316
+LOSS train 3.29987 valid 3.32780, valid PER 100.00%
+EPOCH 10:
+isNotFrozen  True
+  batch 50 loss: 3.287577667236328
+  batch 100 loss: 3.2923907661437988
+  batch 150 loss: 3.2876635646820067
+  batch 200 loss: 3.2972662258148193
+  batch 250 loss: 3.293818507194519
+  batch 300 loss: 3.3058658599853517
+  batch 350 loss: 3.2896547508239746
+  batch 400 loss: 3.291767177581787
+  batch 450 loss: 3.284137134552002
+  batch 500 loss: 3.294607357978821
+  batch 550 loss: 3.2980227661132813
+  batch 600 loss: 3.2918279504776002
+  batch 650 loss: 3.2939702892303466
+  batch 700 loss: 3.2839391040802
+  batch 750 loss: 3.282238035202026
+  batch 800 loss: 3.3034438848495484
+  batch 850 loss: 3.271056408882141
+  batch 900 loss: 3.2860200214385986
+last epoch eta,  [0.0]
+step count :9240, len etas: 9240
+LOSS train 3.28602 valid 3.32642, valid PER 100.00%
+Training finished in 12.0 minutes.
+Model saved to checkpoints/20240212_084544/model_3
+Loading model from checkpoints/20240212_084544/model_3
+CLEAN
+ SUB: 1.15%, DEL: 80.91%, INS: 0.01%, COR: 17.93%, PER: 82.08%
+
